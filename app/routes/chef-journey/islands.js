@@ -1027,7 +1027,7 @@ export const islands = [
           ],
         },
         reflection:
-          "The visual format made our business model accessible to everyone in the room, regardless of business background. However, the rushed timeline for creating both the visual model and elevator pitch left us under-prepared for the presentation.",
+          "The visual format made our business model accessible to everyone in the room, regardless of business background.",
       },
 
       elevatorPitch: {

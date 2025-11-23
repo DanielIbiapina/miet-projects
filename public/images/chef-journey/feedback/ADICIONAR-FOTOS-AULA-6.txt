@@ -1,0 +1,36 @@
+📸 INSTRUÇÕES PARA ADICIONAR AS FOTOS DA AULA 6 (FEEDBACK)
+=========================================================================
+
+Você deve adicionar 2 fotos neste diretório com os seguintes nomes EXATOS:
+
+1️⃣  chefs-journey-final.png
+    → Foto do Chef's Journey REVISADO (versão final)
+    → O cartaz grande mostrando o modelo final com as ilhas revisadas
+    → Será exibida na seção "Chef's Journey Final Version"
+
+2️⃣  team-photo.png
+    → Foto do grupo (Pasta Lovers) na frente do cartaz do Chef's Journey
+    → Será exibida na seção "Our Journey Documented"
+
+📁 Caminho completo: /public/images/chef-journey/feedback/
+
+⚠️  IMPORTANTE:
+   - Use EXATAMENTE esses nomes de arquivo
+   - Formato: .jpg, .jpeg ou .png
+   - A foto do chef's journey final deve ter boa resolução
+
+🎨 LAYOUT CRIADO:
+   - Layout tipo "debate/tribunal" com linha divisória ao meio
+   - Seção VS com argumentos CONTRA (vermelho) e A FAVOR (verde) do Design Thinking
+   - Chef's Journey Final com destaque dourado mostrando o fluxo revisado
+   - Reflexões finais e learnings da UC
+   - Design elegante em tons de cinza escuro
+
+🔄 MUDANÇAS NO CHEF'S JOURNEY FINAL:
+   - ❌ Ilha INGREDIENTS foi abolida
+   - ❌ Ilha PLATING foi abolida (fundida com SERVING)
+   - ✅ Fluxo mais linear baseado na experiência real
+   - ✅ 5 ilhas finais: PREPPING → TASTING → COOKING → FEEDBACK → PLATING & SERVING
+
+✅ Depois de adicionar as fotos, o site vai carregar automaticamente!
+

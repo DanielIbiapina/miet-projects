@@ -1,0 +1,74 @@
+📸 COMO ADICIONAR SUAS FOTOS - EXEMPLO PRÁTICO
+==============================================
+
+1. COPIE suas fotos para as pastas corretas:
+
+   Exemplo de estrutura:
+   
+   public/images/chef-journey/
+   ├── prepping/
+   │   ├── mindmap-megatrends.jpg
+   │   ├── pesquisa-online.jpg
+   │   ├── intent-statement-v1.jpg
+   │   └── foto-grupo-aula1.jpg
+   │
+   ├── tasting/
+   │   ├── entrevista-idosa-1.jpg
+   │   ├── entrevista-idosa-2.jpg
+   │   ├── observacao-cafe.jpg
+   │   └── insights-postits.jpg
+   │
+   ├── cooking/
+   │   ├── brainwriting-sessao.jpg
+   │   ├── hmw-questions.jpg
+   │   ├── ideias-postits-1.jpg
+   │   ├── ideias-postits-2.jpg
+   │   ├── votacao-ideias.jpg
+   │   ├── prototipo-oculos-1.jpg
+   │   ├── prototipo-oculos-2.jpg
+   │   └── cenarios-uso.jpg
+   │
+   ├── feedback/
+   │   ├── apresentacao-prototipo.jpg
+   │   ├── discussao-grupo.jpg
+   │   ├── refinamento-ideias.jpg
+   │   └── intent-statement-final.jpg
+   │
+   └── plating-serving/
+       ├── business-model-canvas.jpg
+       ├── pitch-preparacao.jpg
+       ├── chefs-journey-desenhado.jpg
+       ├── reflexao-natasha-jen.jpg
+       └── apresentacao-final.jpg
+
+
+2. ATUALIZE o arquivo: app/routes/chef-journey/islands.js
+
+   Exemplo para a ilha PREPPING:
+
+   {
+     id: "prepping",
+     title: "PREPPING",
+     // ... outros campos ...
+     images: [
+       "/images/chef-journey/prepping/mindmap-megatrends.jpg",
+       "/images/chef-journey/prepping/pesquisa-online.jpg",
+       "/images/chef-journey/prepping/intent-statement-v1.jpg",
+       "/images/chef-journey/prepping/foto-grupo-aula1.jpg",
+     ]
+   }
+
+   IMPORTANTE: 
+   - O caminho começa com /images/ (não precisa incluir public/)
+   - Use o nome exato do arquivo
+   - Coloque vírgula entre os itens, exceto no último
+
+
+3. PRONTO! 
+   
+   O hot reload vai atualizar automaticamente e suas fotos 
+   aparecerão no site! 🎉
+
+
+DICA: Você pode adicionar quantas fotos quiser em cada ilha!
+

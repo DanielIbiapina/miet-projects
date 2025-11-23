@@ -1,0 +1,35 @@
+📸 INSTRUÇÕES PARA ADICIONAR AS FOTOS DA AULA 5 (PLATING & SERVING)
+=========================================================================
+
+Você deve adicionar 3 fotos neste diretório com os seguintes nomes EXATOS:
+
+1️⃣  visual-storytelling.jpg
+    → Foto do visual storytelling com os pictogramas/emojis
+    → Será exibida na seção "Visual Storytelling"
+    → Tamanho médio, centralizada
+
+2️⃣  presentation.jpg
+    → Foto da apresentação do Visual Business Model
+    → Será exibida na seção "Elevator Pitch"
+    → Tamanho médio, centralizada
+
+3️⃣  business-model-canvas.jpg
+    → Foto do Business Model Canvas em si (a mais importante!)
+    → Será exibida GRANDE e centralizada no meio dos cards do Business Model
+    → ESTA FOTO PRECISA SER BEM GRANDE para poder visualizar todos os detalhes
+
+📁 Caminho completo: /public/images/chef-journey/plating/
+
+⚠️  IMPORTANTE:
+   - Use EXATAMENTE esses nomes de arquivo
+   - Formato: .jpg, .jpeg ou .png
+   - A foto do business-model-canvas.jpg deve ter boa resolução para ser legível
+
+🎨 LAYOUT CRIADO:
+   - Layout tipo "palco de apresentação" com holofotes animados
+   - Painéis com bordas coloridas e efeitos de glow
+   - Business Model Canvas destacado com borda dourada
+   - Design elegante e profissional
+
+✅ Depois de adicionar as fotos, o site vai carregar automaticamente!
+

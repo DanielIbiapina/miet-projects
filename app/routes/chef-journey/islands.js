@@ -447,7 +447,7 @@ export const islands = [
     userVsClient: {
       title: "Understanding User vs. Client",
       analogy:
-        "Parents playing with baby toy: Parents see the fun features (client perspective), but baby only sees parents' backs (actual user experience)",
+        "Parents playing with baby toy: Parents see the fun features (client perspective), but baby only sees toys' backs (actual user experience)",
       lesson:
         "The client who commissions the project may not be the actual end user",
     },
@@ -693,6 +693,12 @@ export const islands = [
 
     images: [
       "/images/chef-journey/cooking/prototyping1.jpeg",
+      "/images/chef-journey/cooking/prototype.jpeg",
+      "/images/chef-journey/cooking/brainwriting1.jpeg",
+      "/images/chef-journey/cooking/brainwriting2.jpeg",
+      "/images/chef-journey/cooking/mostvoted1.jpeg",
+      "/images/chef-journey/cooking/mostvoted2.jpeg",
+
       // Add more photos:
       // "/images/chef-journey/cooking/brainwriting-wall.jpg" - Wall of post-its
       // "/images/chef-journey/cooking/brainwriting-session.jpg" - Team working
@@ -706,6 +712,161 @@ export const islands = [
     position: { x: 50, y: 50 },
     layoutType: "arvision", // NEW: AR Vision mode!
     hasAREffect: false, // Now integrated into island layout itself
+  },
+  {
+    id: "plating-serving",
+    title: "PLATING & SERVING",
+    subtitle: "Tools for Presenting the Project's Solutions",
+    description:
+      "Learning how to effectively communicate and present our solution through storytelling, visual business models, and elevator pitches.",
+    classes: "Class 5 — October 25",
+
+    // CLASS 5 CONTENT
+    class5: {
+      title: "Class 5: Presentation Tools & Business Model",
+      date: "October 25",
+
+      presentationTools: {
+        divergence: ["Storytelling", "Storyboarding", "Concept Visualization"],
+        convergence: [
+          "Solution Prototype",
+          "Visual Business Model Canvas",
+          "Elevator Pitch",
+          "Roadmap",
+        ],
+      },
+
+      storytellingTheory: {
+        title: "The Power of Storytelling",
+        quotes: [
+          {
+            author: "Jeff Bezos, Amazon",
+            text: "You can have the best technology, you can have the best business model, but if the storytelling is not amazing, it won't matter. Nobody will watch.",
+          },
+          {
+            author: "Marco Aureli Bocci",
+            text: "Only 5% of people remember statistics and graphs presented at a meeting, while 63% easily remember a well-told story.",
+          },
+        ],
+        importance:
+          "Stories help us understand and give meaning to the world. They are a powerful tool for producing meaning and creating emotional connection.",
+      },
+
+      visualStorytelling: {
+        title: "Our Story in Pictograms",
+        description:
+          "We translated our project into a visual narrative using symbols and emojis, making the problem and solution immediately understandable.",
+        ourStory: [],
+        reflection:
+          "This exercise forced us to distill complex concepts into simple, universal symbols, revealing the core emotional journey of our users.",
+      },
+
+      visualBusinessModel: {
+        title: "Visual Business Model Canvas",
+        description:
+          "Instead of a traditional text-based business model, we created a visual representation using drawings and icons to make our business strategy immediately comprehensible.",
+        components: {
+          strategicPartners: [
+            "🏢 Google, Apple, IBM (tech partners)",
+            "🎓 Universities (educational institutions)",
+            "🔨 (development/production)",
+          ],
+          keyActivities: [
+            "💡 Innovation & ideation",
+            "👨‍🔬 Scientist programming (R&D)",
+            "🌐 Hello World (development)",
+            "👓✨ Personalizing the glasses",
+          ],
+          keyResources: [
+            "👥 Our team (employees)",
+            "🤖 AI technology",
+            "🛠️ Service infrastructure",
+          ],
+          valueProposition: [
+            "👵👓📜 Elderly person using our glasses and raising a certificate",
+            "💻🤖🎓 (codes, AI, university learning)",
+            "Main message: Empowering seniors with digital literacy through AR technology",
+          ],
+          customerRelationship: [
+            "1️⃣2️⃣3️⃣4️⃣ Learning progression (levels/steps)",
+            "📜 Course completion certificates",
+            "Progressive achievement system",
+          ],
+          distributionChannels: [
+            "📺 TV advertising",
+            "🛍️ Online/retail stores",
+            "🚚 Home delivery",
+          ],
+          customerSegment: [
+            "👴👵 Older adults (60+ years)",
+            "💰 Various income levels",
+          ],
+          cost: [
+            "🤖💵 AI technology costs",
+            "👥💵 Employee salaries",
+            "🧺💵 Operational costs",
+          ],
+          revenues: [
+            "👓💰 Smart glasses sales",
+            "🤝💰 Partnership fees",
+            "💻💰 Software subscriptions",
+            "📱💰 App purchases",
+            "📢💰 Advertising revenue",
+          ],
+        },
+        reflection:
+          "The visual format made our business model accessible to everyone in the room, regardless of business background.",
+      },
+
+      elevatorPitch: {
+        title: "Elevator Pitch Framework",
+        structure: [
+          "❓ What's the problem?",
+          "🔍 What caused the problem?",
+          "💡 What's the solution?",
+          "🛤️ How do you get there?",
+          "👥 Who is the user?",
+        ],
+        challenge:
+          "We had only 5-10 minutes to prepare the pitch and 2 minutes to deliver it, which led to a nervous and rushed presentation (mainly by me, I am sorry). Despite preparation challenges, we communicated the core value of our AR glasses for elderly digital literacy.",
+      },
+    },
+
+    reflections: [
+      {
+        topic: "The Challenge of Visual Communication",
+        text: "Creating visual representations of complex ideas forced us to truly understand our project at its core. Simplifying concepts into symbols revealed what was truly essential versus what was noise.",
+      },
+      {
+        topic: "Time Pressure & Presentation Anxiety",
+        text: "The rushed preparation time for elevator pitch affected presentation quality. In real-world scenarios, I would need to prepare more effectively to avoid this situation.",
+      },
+      {
+        topic: "Storytelling as Universal Language",
+        text: "Seeing how pictograms could convey our entire project narrative proved the power of visual storytelling. It transcended language barriers and made our solution emotionally resonant.",
+      },
+    ],
+
+    learnings: [
+      "Visual storytelling is a powerful tool for communicating complex ideas simply and emotionally.",
+      "The Business Model Canvas helps visualize not just the product, but the entire ecosystem around it.",
+      "Elevator pitches require clarity, brevity, and confidence—all skills that need practice.",
+      "Effective presentations combine visual, verbal, and emotional elements.",
+      "Simplification is harder than complication—distilling ideas to their essence requires deep understanding.",
+      "Preparation time significantly impacts presentation quality and confidence.",
+      "Visual business models democratize understanding—anyone can grasp the concept, not just business experts.",
+    ],
+
+    images: [
+      "/images/chef-journey/plating/visual-storytelling.png", // Photo 1: Visual storytelling pictograms
+      "/images/chef-journey/plating/presentation.png", // Photo 2: Team presenting the business model
+      "/images/chef-journey/plating/business-model-canvas.png", // Photo 3: The visual business model (LARGE)
+    ],
+
+    color: "#A8E6CF",
+    icon: "🎯",
+    position: { x: 70, y: 45 },
+    layoutType: "presentation", // NEW: Presentation/Stage layout
   },
   {
     id: "feedback",
@@ -892,193 +1053,8 @@ export const islands = [
 
     color: "#95E1D3",
     icon: "🔄",
-    position: { x: 70, y: 45 },
-    layoutType: "debate", // NEW: Debate/critical reflection layout
-  },
-  {
-    id: "plating-serving",
-    title: "PLATING & SERVING",
-    subtitle: "Tools for Presenting the Project's Solutions",
-    description:
-      "Learning how to effectively communicate and present our solution through storytelling, visual business models, and elevator pitches.",
-    classes: "Class 5 — October 25",
-
-    // CLASS 5 CONTENT
-    class5: {
-      title: "Class 5: Presentation Tools & Business Model",
-      date: "October 25",
-
-      presentationTools: {
-        divergence: ["Storytelling", "Storyboarding", "Concept Visualization"],
-        convergence: [
-          "Solution Prototype",
-          "Visual Business Model Canvas",
-          "Elevator Pitch",
-          "Roadmap",
-        ],
-      },
-
-      storytellingTheory: {
-        title: "The Power of Storytelling",
-        quotes: [
-          {
-            author: "Jeff Bezos, Amazon",
-            text: "You can have the best technology, you can have the best business model, but if the storytelling is not amazing, it won't matter. Nobody will watch.",
-          },
-          {
-            author: "Marco Aureli Bocci",
-            text: "Only 5% of people remember statistics and graphs presented at a meeting, while 63% easily remember a well-told story.",
-          },
-        ],
-        importance:
-          "Stories help us understand and give meaning to the world. They are a powerful tool for producing meaning and creating emotional connection.",
-      },
-
-      visualStorytelling: {
-        title: "Our Story in Pictograms",
-        description:
-          "We translated our project into a visual narrative using symbols and emojis, making the problem and solution immediately understandable.",
-        /*ourStory: [
-          {
-            stage: "Problem Introduction",
-            symbols: [
-              "👴 (sad elderly person with cane, looking down, crying)",
-              "→",
-              "💻❓ (elderly confused at computer)",
-              "→",
-              "👓📶 (smart glasses with Wi-Fi)",
-            ],
-          },
-          {
-            stage: "Context & Challenge",
-            symbols: [
-              "🤖😈 (AI robot with evil smile)",
-              "→",
-              "📈💼 (job market rising, Open AI)",
-              "→",
-              "👓 (joins with glasses above)",
-            ],
-          },
-          {
-            stage: "Solution & Outcome",
-            symbols: [
-              "👓 (both storylines converge on the glasses)",
-              "→",
-              "👴👓😊 (elderly person wearing glasses, happy)",
-            ],
-          },
-        ],*/
-        ourStory: [],
-        reflection:
-          "This exercise forced us to distill complex concepts into simple, universal symbols, revealing the core emotional journey of our users.",
-      },
-
-      visualBusinessModel: {
-        title: "Visual Business Model Canvas",
-        description:
-          "Instead of a traditional text-based business model, we created a visual representation using drawings and icons to make our business strategy immediately comprehensible.",
-        components: {
-          strategicPartners: [
-            "🏢 Google, Apple, IBM (tech partners)",
-            "🎓 Universities (educational institutions)",
-            "🔨 (development/production)",
-          ],
-          keyActivities: [
-            "💡 Innovation & ideation",
-            "👨‍🔬 Scientist programming (R&D)",
-            "🌐 Hello World (development)",
-            "👓✨ Personalizing the glasses",
-          ],
-          keyResources: [
-            "👥 Our team (employees)",
-            "🤖 AI technology",
-            "🛠️ Service infrastructure",
-          ],
-          valueProposition: [
-            "👵👓📜 Elderly person using our glasses and raising a certificate",
-            "💻🤖🎓 (codes, AI, university learning)",
-            "Main message: Empowering seniors with digital literacy through AR technology",
-          ],
-          customerRelationship: [
-            "1️⃣2️⃣3️⃣4️⃣ Learning progression (levels/steps)",
-            "📜 Course completion certificates",
-            "Progressive achievement system",
-          ],
-          distributionChannels: [
-            "📺 TV advertising",
-            "🛍️ Online/retail stores",
-            "🚚 Home delivery",
-          ],
-          customerSegment: [
-            "👴👵 Older adults (60+ years)",
-            "💰 Various income levels",
-          ],
-          cost: [
-            "🤖💵 AI technology costs",
-            "👥💵 Employee salaries",
-            "🧺💵 Operational costs",
-          ],
-          revenues: [
-            "👓💰 Smart glasses sales",
-            "🤝💰 Partnership fees",
-            "💻💰 Software subscriptions",
-            "📱💰 App purchases",
-            "📢💰 Advertising revenue",
-          ],
-        },
-        reflection:
-          "The visual format made our business model accessible to everyone in the room, regardless of business background.",
-      },
-
-      elevatorPitch: {
-        title: "Elevator Pitch Framework",
-        structure: [
-          "❓ What's the problem?",
-          "🔍 What caused the problem?",
-          "💡 What's the solution?",
-          "🛤️ How do you get there?",
-          "👥 Who is the user?",
-        ],
-        challenge:
-          "We had only 5-10 minutes to prepare the pitch and 2 minutes to deliver it, which led to a nervous and rushed presentation (mainly by me, I am sorry). Despite preparation challenges, we communicated the core value of our AR glasses for elderly digital literacy.",
-      },
-    },
-
-    reflections: [
-      {
-        topic: "The Challenge of Visual Communication",
-        text: "Creating visual representations of complex ideas forced us to truly understand our project at its core. Simplifying concepts into symbols revealed what was truly essential versus what was noise.",
-      },
-      {
-        topic: "Time Pressure & Presentation Anxiety",
-        text: "The rushed preparation time for both the visual business model and elevator pitch affected presentation quality. In real-world scenarios, effective communication requires adequate preparation time.",
-      },
-      {
-        topic: "Storytelling as Universal Language",
-        text: "Seeing how pictograms could convey our entire project narrative proved the power of visual storytelling. It transcended language barriers and made our solution emotionally resonant.",
-      },
-    ],
-
-    learnings: [
-      "Visual storytelling is a powerful tool for communicating complex ideas simply and emotionally.",
-      "The Business Model Canvas helps visualize not just the product, but the entire ecosystem around it.",
-      "Elevator pitches require clarity, brevity, and confidence—all skills that need practice.",
-      "Effective presentations combine visual, verbal, and emotional elements.",
-      "Simplification is harder than complication—distilling ideas to their essence requires deep understanding.",
-      "Preparation time significantly impacts presentation quality and confidence.",
-      "Visual business models democratize understanding—anyone can grasp the concept, not just business experts.",
-    ],
-
-    images: [
-      "/images/chef-journey/plating/visual-storytelling.png", // Photo 1: Visual storytelling pictograms
-      "/images/chef-journey/plating/presentation.png", // Photo 2: Team presenting the business model
-      "/images/chef-journey/plating/business-model-canvas.png", // Photo 3: The visual business model (LARGE)
-    ],
-
-    color: "#A8E6CF",
-    icon: "🎯",
     position: { x: 85, y: 60 },
-    layoutType: "presentation", // NEW: Presentation/Stage layout
+    layoutType: "debate", // NEW: Debate/critical reflection layout
   },
 ];
 
@@ -1093,7 +1069,7 @@ export const intentStatements = {
 // Project information
 export const projectInfo = {
   course: "Design Thinking",
-  institution: "FEUP / MIETE",
+  institution: "FEUP / MIET",
   theme: "Digital Literacy for Older Adults (60+)",
   finalProduct: "Smart Glasses with Augmented Reality",
   productFeatures: [

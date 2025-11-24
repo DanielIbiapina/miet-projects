@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
-import IslandMap from '../../components/ChefJourney/IslandMap';
-import IslandContent from '../../components/ChefJourney/IslandContent';
-import AROverlay from '../../components/ChefJourney/AROverlay';
-import { islands, projectInfo } from './islands';
+import { useState } from "react";
+import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
+import IslandMap from "../../components/ChefJourney/IslandMap";
+import IslandContent from "../../components/ChefJourney/IslandContent";
+import AROverlay from "../../components/ChefJourney/AROverlay";
+import { islands, projectInfo } from "./islands";
 
 const PageContainer = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   background: #000;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-family: "Inter", "Segoe UI", sans-serif;
   position: relative;
 `;
 
@@ -25,6 +25,30 @@ const IntroScreen = styled(motion.div)`
   flex-direction: column;
   z-index: 100;
   color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2rem 1rem;
+
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
 `;
 
 const IntroIcon = styled(motion.div)`
@@ -54,11 +78,11 @@ const IntroInfo = styled(motion.div)`
   margin: 2rem 0;
   border: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
-  
+
   p {
     margin: 0.8rem 0;
     font-size: 1.2rem;
-    
+
     strong {
       font-weight: 700;
     }
@@ -80,10 +104,29 @@ const StartButton = styled(motion.button)`
   gap: 1rem;
 `;
 
+const ScrollIndicator = styled(motion.div)`
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  z-index: 101;
+
+  .arrow {
+    font-size: 1.5rem;
+  }
+`;
+
 const ViewContainer = styled(motion.div)`
   position: fixed;
   inset: 0;
   overflow: hidden;
+  isolation: isolate;
 `;
 
 const IslandView = styled(motion.div)`
@@ -91,12 +134,13 @@ const IslandView = styled(motion.div)`
   inset: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  background: white;
-  
+  background: ${(props) => (props.$transparent ? "transparent" : "white")};
+  padding-bottom: 120px; /* Espaço para os botões */
+
   /* Hide scrollbar */
   scrollbar-width: none;
   -ms-overflow-style: none;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -114,29 +158,33 @@ const NavigationBar = styled(motion.div)`
   display: flex;
   gap: 1rem;
   align-items: center;
-  z-index: 1000;
+  z-index: 99999 !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  pointer-events: auto !important;
+  isolation: isolate;
 `;
 
 const NavButton = styled(motion.button)`
   padding: 0.8rem 2rem;
-  background: ${props => props.$active ? props.$color : 'rgba(255, 255, 255, 0.1)'};
+  background: ${(props) =>
+    props.$active ? props.$color : "rgba(255, 255, 255, 0.1)"};
   color: white;
-  border: 2px solid ${props => props.$active ? props.$color : 'rgba(255, 255, 255, 0.3)'};
+  border: 2px solid
+    ${(props) => (props.$active ? props.$color : "rgba(255, 255, 255, 0.3)")};
   border-radius: 30px;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   white-space: nowrap;
-  
+
   &:disabled {
     opacity: 0.3;
     cursor: not-allowed;
   }
-  
+
   &:not(:disabled):hover {
-    background: ${props => props.$color}cc;
-    border-color: ${props => props.$color};
+    background: ${(props) => props.$color}cc;
+    border-color: ${(props) => props.$color};
   }
 `;
 
@@ -152,7 +200,7 @@ const MapButton = styled(motion.button)`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  
+
   &:hover {
     background: rgba(255, 255, 255, 0.3);
   }
@@ -168,17 +216,19 @@ const Dot = styled(motion.button)`
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: ${props => props.$active ? props.$color : 'rgba(255, 255, 255, 0.3)'};
-  border: 2px solid ${props => props.$active ? props.$color : 'rgba(255, 255, 255, 0.5)'};
+  background: ${(props) =>
+    props.$active ? props.$color : "rgba(255, 255, 255, 0.3)"};
+  border: 2px solid
+    ${(props) => (props.$active ? props.$color : "rgba(255, 255, 255, 0.5)")};
   cursor: pointer;
-  
+
   &:hover {
     transform: scale(1.3);
   }
 `;
 
 export default function ChefJourney() {
-  const [view, setView] = useState('intro'); // intro, map, island
+  const [view, setView] = useState("intro"); // intro, map, island
   const [currentIsland, setCurrentIsland] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showAR, setShowAR] = useState(false);
@@ -186,28 +236,28 @@ export default function ChefJourney() {
   const handleStart = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      setView('map');
+      setView("map");
       setIsTransitioning(false);
-    }, 500);
+    }, 1200); // Increased to match new exit animation duration
   };
 
   const handleIslandClick = (index) => {
     setIsTransitioning(true);
     setCurrentIsland(index);
-    
+
     // Zoom animation delay
     setTimeout(() => {
-      setView('island');
+      setView("island");
       setIsTransitioning(false);
     }, 1000);
   };
 
   const handleBackToMap = () => {
     setIsTransitioning(true);
-    
+
     // Deszoom animation delay
     setTimeout(() => {
-      setView('map');
+      setView("map");
       setIsTransitioning(false);
     }, 800);
   };
@@ -215,12 +265,12 @@ export default function ChefJourney() {
   const handleNextIsland = () => {
     if (currentIsland < islands.length - 1) {
       setIsTransitioning(true);
-      
+
       // Deszoom then zoom
-      setTimeout(() => setView('map'), 600);
+      setTimeout(() => setView("map"), 600);
       setTimeout(() => {
         setCurrentIsland(currentIsland + 1);
-        setView('island');
+        setView("island");
         setIsTransitioning(false);
       }, 1400);
     }
@@ -229,12 +279,12 @@ export default function ChefJourney() {
   const handlePrevIsland = () => {
     if (currentIsland > 0) {
       setIsTransitioning(true);
-      
+
       // Deszoom then zoom
-      setTimeout(() => setView('map'), 600);
+      setTimeout(() => setView("map"), 600);
       setTimeout(() => {
         setCurrentIsland(currentIsland - 1);
-        setView('island');
+        setView("island");
         setIsTransitioning(false);
       }, 1400);
     }
@@ -243,28 +293,36 @@ export default function ChefJourney() {
   const handleDotClick = (index) => {
     if (index !== currentIsland) {
       setIsTransitioning(true);
-      
+
       // Deszoom then zoom
-      setTimeout(() => setView('map'), 600);
+      setTimeout(() => setView("map"), 600);
       setTimeout(() => {
         setCurrentIsland(index);
-        setView('island');
+        setView("island");
         setIsTransitioning(false);
       }, 1400);
     }
   };
 
-  const currentIslandData = currentIsland !== null ? islands[currentIsland] : null;
+  const currentIslandData =
+    currentIsland !== null ? islands[currentIsland] : null;
 
   return (
     <PageContainer data-chef-journey>
       <AnimatePresence mode="wait">
-        {view === 'intro' && (
+        {view === "intro" && (
           <IntroScreen
             key="intro"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 1.1 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 1, scale: 1 }}
+            exit={{
+              opacity: 0,
+              scale: 3,
+              rotateZ: 10,
+            }}
+            transition={{
+              duration: 1.2,
+              ease: [0.76, 0, 0.24, 1],
+            }}
           >
             <IntroIcon
               initial={{ scale: 0, rotate: -180 }}
@@ -273,7 +331,7 @@ export default function ChefJourney() {
             >
               👨‍🍳🏝️
             </IntroIcon>
-            
+
             <IntroTitle
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -281,7 +339,7 @@ export default function ChefJourney() {
             >
               Chef's Journey
             </IntroTitle>
-            
+
             <IntroSubtitle
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -295,16 +353,22 @@ export default function ChefJourney() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
             >
-              <p><strong>Course:</strong> {projectInfo.course}</p>
-              <p><strong>Institution:</strong> {projectInfo.institution}</p>
-              <p><strong>Theme:</strong> {projectInfo.theme}</p>
+              <p>
+                <strong>Course:</strong> {projectInfo.course}
+              </p>
+              <p>
+                <strong>Institution:</strong> {projectInfo.institution}
+              </p>
             </IntroInfo>
 
             <StartButton
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.9 }}
-              whileHover={{ scale: 1.05, boxShadow: "0 12px 32px rgba(0, 0, 0, 0.4)" }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 12px 32px rgba(0, 0, 0, 0.4)",
+              }}
               whileTap={{ scale: 0.95 }}
               onClick={handleStart}
             >
@@ -313,7 +377,7 @@ export default function ChefJourney() {
           </IntroScreen>
         )}
 
-        {view === 'map' && (
+        {view === "map" && (
           <ViewContainer
             key="map"
             initial={{ scale: currentIsland !== null ? 2 : 0.8, opacity: 0 }}
@@ -329,7 +393,7 @@ export default function ChefJourney() {
           </ViewContainer>
         )}
 
-        {view === 'island' && currentIslandData && (
+        {view === "island" && currentIslandData && (
           <ViewContainer
             key={`island-${currentIsland}`}
             initial={{ scale: 0.5, opacity: 0 }}
@@ -337,9 +401,15 @@ export default function ChefJourney() {
             exit={{ scale: 0.5, opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
           >
-            <IslandView>
-              <IslandContent 
-                island={currentIslandData} 
+            <IslandView
+              $transparent={
+                currentIslandData?.layoutType === "debate" ||
+                currentIslandData?.layoutType === "arvision" ||
+                currentIslandData?.layoutType === "presentation"
+              }
+            >
+              <IslandContent
+                island={currentIslandData}
                 onARClick={() => setShowAR(true)}
               />
             </IslandView>
@@ -348,6 +418,11 @@ export default function ChefJourney() {
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8 }}
+              style={{
+                zIndex: 99999,
+                pointerEvents: "auto",
+                position: "fixed",
+              }}
             >
               <NavButton
                 onClick={handlePrevIsland}
@@ -383,7 +458,9 @@ export default function ChefJourney() {
 
               <NavButton
                 onClick={handleNextIsland}
-                disabled={currentIsland === islands.length - 1 || isTransitioning}
+                disabled={
+                  currentIsland === islands.length - 1 || isTransitioning
+                }
                 $color={currentIslandData.color}
                 $active
                 whileHover={{ scale: 1.05 }}
@@ -401,7 +478,7 @@ export default function ChefJourney() {
         onClose={() => setShowAR(false)}
         product={{
           name: projectInfo.finalProduct,
-          features: projectInfo.productFeatures
+          features: projectInfo.productFeatures,
         }}
       />
     </PageContainer>

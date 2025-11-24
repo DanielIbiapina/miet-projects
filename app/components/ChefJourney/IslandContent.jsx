@@ -864,11 +864,11 @@ const NoseBridge = styled.div`
 const GlassesRim = styled.div`
   position: absolute;
   inset: 0;
-  border: 8px solid rgba(40, 40, 50, 0.7);
-  border-radius: 30px;
+  border: 24px solid rgba(25, 25, 35, 0.85);
+  border-radius: 45px;
   box-shadow:
-    inset 0 0 30px rgba(0, 0, 0, 0.5),
-    0 0 20px rgba(255, 215, 0, 0.1);
+    inset 0 0 30px rgba(0, 0, 0, 0.6),
+    0 0 35px rgba(255, 215, 0, 0.15);
 `;
 
 const ARStatusBar = styled.div`
@@ -1298,6 +1298,449 @@ const Placeholder = styled.div`
   }
 `;
 
+// ============================================
+// DEBATE LAYOUT STYLED COMPONENTS (FEEDBACK - Class 6)
+// ============================================
+const DebateContainer = styled(motion.div)`
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+  padding: 4rem 2rem 8rem 2rem;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 1;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.3) 20%,
+      rgba(255, 255, 255, 0.3) 80%,
+      transparent 100%
+    );
+  }
+`;
+
+const DebateHeader = styled(motion.header)`
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #95e1d3, #7dd3c0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    color: #95e1d3;
+    font-weight: 300;
+    margin: 0.5rem 0;
+  }
+
+  .date {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+  }
+`;
+
+const DebateContent = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+`;
+
+const DebatePanel = styled(motion.div)`
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 2px solid
+    ${(props) => props.$borderColor || "rgba(149, 225, 211, 0.3)"};
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 3rem;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px ${(props) => props.$glowColor || "rgba(149, 225, 211, 0.2)"};
+
+  h2 {
+    font-size: 2.5rem;
+    color: ${(props) => props.$titleColor || "#95e1d3"};
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 800;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    color: ${(props) => props.$titleColor || "#95e1d3"};
+    margin: 2rem 0 1rem 0;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+
+  li {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+
+    &:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: ${(props) => props.$titleColor || "#95e1d3"};
+      font-weight: bold;
+    }
+  }
+`;
+
+const VersusContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 2rem;
+  margin: 3rem 0;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+`;
+
+const VersusSymbol = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.3);
+  align-self: center;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+const ArgumentSide = styled(motion.div)`
+  background: linear-gradient(
+    135deg,
+    ${(props) => props.$bgColor + "20"} 0%,
+    ${(props) => props.$bgColor + "10"} 100%
+  );
+  border: 3px solid ${(props) => props.$borderColor};
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 15px 50px ${(props) => props.$shadowColor};
+
+  h3 {
+    font-size: 2rem;
+    color: ${(props) => props.$textColor};
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .speaker-info {
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+`;
+
+const ArgumentCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid ${(props) => props.$color};
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  h4 {
+    font-size: 1.3rem;
+    color: ${(props) => props.$color};
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin: 0;
+  }
+`;
+
+const ChefJourneyFlowContainer = styled(motion.div)`
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.15),
+    rgba(255, 215, 0, 0.05)
+  );
+  border: 3px solid rgba(255, 215, 0, 0.4);
+  border-radius: 20px;
+  padding: 3rem;
+  margin: 3rem 0;
+  box-shadow: 0 15px 50px rgba(255, 215, 0, 0.2);
+
+  h3 {
+    font-size: 2.5rem;
+    color: #ffd700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 800;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .changes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    span {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+  }
+`;
+
+const FlowSteps = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+`;
+
+const FlowStep = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 15px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateX(10px);
+    border-color: rgba(255, 215, 0, 0.6);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+  }
+
+  .step-number {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #ffd700;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .step-content {
+    flex: 1;
+
+    h4 {
+      font-size: 1.5rem;
+      color: #ffd700;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .step-subtitle {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0.8rem;
+      font-style: italic;
+    }
+
+    .step-activities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      span {
+        background: rgba(255, 215, 0, 0.2);
+        border: 1px solid rgba(255, 215, 0, 0.4);
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+`;
+
+const SuccessCasesList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+
+  .case-card {
+    background: rgba(76, 175, 80, 0.1);
+    border: 2px solid rgba(76, 175, 80, 0.3);
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    transition: all 0.3s;
+
+    &:hover {
+      background: rgba(76, 175, 80, 0.2);
+      border-color: rgba(76, 175, 80, 0.6);
+      transform: scale(1.05);
+    }
+  }
+`;
+
+const ReflectionGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+`;
+
+const ReflectionCard = styled(motion.div)`
+  background: linear-gradient(
+    135deg,
+    rgba(138, 43, 226, 0.15),
+    rgba(138, 43, 226, 0.05)
+  );
+  border: 2px solid rgba(138, 43, 226, 0.4);
+  border-radius: 15px;
+  padding: 2rem;
+
+  h4 {
+    font-size: 1.5rem;
+    color: #ba55d3;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    margin: 0;
+  }
+`;
+
+const LearningsList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  li {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.03)
+    );
+    padding: 1.2rem 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #95e1d3;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateX(10px);
+      border-left-color: #ffd700;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 215, 0, 0.1),
+        rgba(255, 215, 0, 0.05)
+      );
+    }
+  }
+`;
+
+const PhotoSection = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+
+  .photo-wrapper {
+    text-align: center;
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 15px 50px rgba(149, 225, 211, 0.3);
+      border: 3px solid rgba(149, 225, 211, 0.3);
+      transition: all 0.3s;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 60px rgba(149, 225, 211, 0.5);
+      }
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-style: italic;
+    }
+  }
+`;
+
 export default function IslandContent({ island, onARClick }) {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -1498,10 +1941,10 @@ export default function IslandContent({ island, onARClick }) {
                 animate={{ scale: 1, rotateY: 0 }}
                 transition={{ delay: 1, type: "spring" }}
                 whileHover={{
-                  scale: 4,
-                  rotateY: 10,
-                  z: 100,
-                  transition: { duration: 0.4 },
+                  scale: 1.2,
+                  rotateY: 4,
+                  z: 40,
+                  transition: { duration: 0.25 },
                 }}
                 onClick={() => setExpandedPopup("voting")}
               >
@@ -3372,469 +3815,79 @@ export default function IslandContent({ island, onARClick }) {
   // DEBATE LAYOUT (FEEDBACK - Class 6)
   // ============================================
   if (island.layoutType === "debate" && island.class6) {
-    const DebateContainer = styled(motion.div)`
-      width: 100%;
-      min-height: 100vh;
-      background: linear-gradient(
-        135deg,
-        #2c3e50 0%,
-        #34495e 50%,
-        #2c3e50 100%
-      );
-      padding: 4rem 2rem;
-      position: relative;
-      overflow: hidden;
-
-      &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 100%;
-        background: linear-gradient(
-          180deg,
-          transparent 0%,
-          rgba(255, 255, 255, 0.3) 20%,
-          rgba(255, 255, 255, 0.3) 80%,
-          transparent 100%
-        );
-      }
-    `;
-
-    const DebateHeader = styled(motion.header)`
-      text-align: center;
-      margin-bottom: 4rem;
-      position: relative;
-      z-index: 2;
-
-      h1 {
-        font-size: 4rem;
-        font-weight: 900;
-        background: linear-gradient(135deg, #95e1d3, #7dd3c0);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 1rem;
-      }
-
-      p {
-        font-size: 1.5rem;
-        color: #95e1d3;
-        font-weight: 300;
-        margin: 0.5rem 0;
-      }
-
-      .date {
-        font-size: 1rem;
-        color: rgba(255, 255, 255, 0.6);
-        font-style: italic;
-      }
-    `;
-
-    const DebateContent = styled.div`
-      max-width: 1400px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    `;
-
-    const DebatePanel = styled(motion.div)`
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.05) 100%
-      );
-      backdrop-filter: blur(10px);
-      border: 2px solid
-        ${(props) => props.$borderColor || "rgba(149, 225, 211, 0.3)"};
-      border-radius: 20px;
-      padding: 3rem;
-      margin-bottom: 3rem;
-      box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.3),
-        0 0 20px ${(props) => props.$glowColor || "rgba(149, 225, 211, 0.2)"};
-
-      h2 {
-        font-size: 2.5rem;
-        color: ${(props) => props.$titleColor || "#95e1d3"};
-        margin-bottom: 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        font-weight: 800;
-      }
-
-      h3 {
-        font-size: 1.8rem;
-        color: ${(props) => props.$titleColor || "#95e1d3"};
-        margin: 2rem 0 1rem 0;
-        font-weight: 700;
-      }
-
-      p {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 1.5rem;
-      }
-
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 1.5rem 0;
-      }
-
-      li {
-        font-size: 1.05rem;
-        color: rgba(255, 255, 255, 0.85);
-        margin-bottom: 0.8rem;
-        padding-left: 1.5rem;
-        position: relative;
-
-        &:before {
-          content: "→";
-          position: absolute;
-          left: 0;
-          color: ${(props) => props.$titleColor || "#95e1d3"};
-          font-weight: bold;
-        }
-      }
-    `;
-
-    const VersusContainer = styled.div`
-      display: grid;
-      grid-template-columns: 1fr 80px 1fr;
-      gap: 2rem;
-      margin: 3rem 0;
-      align-items: start;
-
-      @media (max-width: 1024px) {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-    `;
-
-    const VersusSymbol = styled(motion.div)`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      font-weight: 900;
-      color: rgba(255, 255, 255, 0.3);
-      align-self: center;
-
-      @media (max-width: 1024px) {
-        display: none;
-      }
-    `;
-
-    const ArgumentSide = styled(motion.div)`
-      background: linear-gradient(
-        135deg,
-        ${(props) => props.$bgColor + "20"} 0%,
-        ${(props) => props.$bgColor + "10"} 100%
-      );
-      border: 3px solid ${(props) => props.$borderColor};
-      border-radius: 20px;
-      padding: 2.5rem;
-      box-shadow: 0 15px 50px ${(props) => props.$shadowColor};
-
-      h3 {
-        font-size: 2rem;
-        color: ${(props) => props.$textColor};
-        margin-bottom: 1.5rem;
-        font-weight: 800;
-        text-align: center;
-      }
-
-      .speaker-info {
-        text-align: center;
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.7);
-        margin-bottom: 2rem;
-        font-style: italic;
-      }
-    `;
-
-    const ArgumentCard = styled(motion.div)`
-      background: rgba(255, 255, 255, 0.05);
-      border-left: 4px solid ${(props) => props.$color};
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-
-      h4 {
-        font-size: 1.3rem;
-        color: ${(props) => props.$color};
-        margin-bottom: 0.8rem;
-        font-weight: 700;
-      }
-
-      p {
-        font-size: 1rem;
-        color: rgba(255, 255, 255, 0.85);
-        line-height: 1.6;
-        margin: 0;
-      }
-    `;
-
-    const ChefJourneyFlowContainer = styled(motion.div)`
-      background: linear-gradient(
-        135deg,
-        rgba(255, 215, 0, 0.15),
-        rgba(255, 215, 0, 0.05)
-      );
-      border: 3px solid rgba(255, 215, 0, 0.4);
-      border-radius: 20px;
-      padding: 3rem;
-      margin: 3rem 0;
-      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.2);
-
-      h3 {
-        font-size: 2.5rem;
-        color: #ffd700;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        font-weight: 800;
-      }
-
-      .description {
-        font-size: 1.1rem;
-        color: rgba(255, 255, 255, 0.85);
-        text-align: center;
-        margin-bottom: 2rem;
-        line-height: 1.7;
-      }
-
-      .changes {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: center;
-        margin-bottom: 2rem;
-
-        span {
-          background: rgba(255, 255, 255, 0.1);
-          padding: 0.5rem 1rem;
-          border-radius: 20px;
-          font-size: 1rem;
-          color: rgba(255, 255, 255, 0.9);
-        }
-      }
-    `;
-
-    const FlowSteps = styled.div`
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin: 2rem 0;
-    `;
-
-    const FlowStep = styled(motion.div)`
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.08),
-        rgba(255, 255, 255, 0.03)
-      );
-      border: 2px solid rgba(255, 215, 0, 0.3);
-      border-radius: 15px;
-      padding: 1.5rem;
-      transition: all 0.3s;
-
-      &:hover {
-        transform: translateX(10px);
-        border-color: rgba(255, 215, 0, 0.6);
-        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-      }
-
-      .step-number {
-        font-size: 2rem;
-        font-weight: 900;
-        color: #ffd700;
-        min-width: 50px;
-        text-align: center;
-      }
-
-      .step-content {
-        flex: 1;
-
-        h4 {
-          font-size: 1.5rem;
-          color: #ffd700;
-          margin-bottom: 0.5rem;
-          font-weight: 700;
-        }
-
-        .step-subtitle {
-          font-size: 1rem;
-          color: rgba(255, 255, 255, 0.7);
-          margin-bottom: 0.8rem;
-          font-style: italic;
-        }
-
-        .step-activities {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-
-          span {
-            background: rgba(255, 215, 0, 0.2);
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
-          }
-        }
-      }
-    `;
-
-    const SuccessCasesList = styled.div`
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin: 2rem 0;
-
-      .case-card {
-        background: rgba(76, 175, 80, 0.1);
-        border: 2px solid rgba(76, 175, 80, 0.3);
-        border-radius: 10px;
-        padding: 1rem;
-        font-size: 0.95rem;
-        color: rgba(255, 255, 255, 0.85);
-        text-align: center;
-        transition: all 0.3s;
-
-        &:hover {
-          background: rgba(76, 175, 80, 0.2);
-          border-color: rgba(76, 175, 80, 0.6);
-          transform: scale(1.05);
-        }
-      }
-    `;
-
-    const ReflectionGrid = styled.div`
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
-    `;
-
-    const ReflectionCard = styled(motion.div)`
-      background: linear-gradient(
-        135deg,
-        rgba(138, 43, 226, 0.15),
-        rgba(138, 43, 226, 0.05)
-      );
-      border: 2px solid rgba(138, 43, 226, 0.4);
-      border-radius: 15px;
-      padding: 2rem;
-
-      h4 {
-        font-size: 1.5rem;
-        color: #ba55d3;
-        margin-bottom: 1rem;
-        font-weight: 700;
-      }
-
-      p {
-        font-size: 1.05rem;
-        color: rgba(255, 255, 255, 0.85);
-        line-height: 1.7;
-        margin: 0;
-      }
-    `;
-
-    const LearningsList = styled.ul`
-      list-style: none;
-      padding: 0;
-      margin: 2rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-
-      li {
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.08),
-          rgba(255, 255, 255, 0.03)
-        );
-        padding: 1.2rem 1.5rem;
-        border-radius: 10px;
-        border-left: 4px solid #95e1d3;
-        font-size: 1.1rem;
-        color: rgba(255, 255, 255, 0.9);
-        line-height: 1.6;
-        transition: all 0.3s;
-
-        &:hover {
-          transform: translateX(10px);
-          border-left-color: #ffd700;
-          background: linear-gradient(
-            135deg,
-            rgba(255, 215, 0, 0.1),
-            rgba(255, 215, 0, 0.05)
-          );
-        }
-      }
-    `;
-
-    const PhotoSection = styled.div`
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-
-      .photo-wrapper {
-        text-align: center;
-
-        img {
-          width: 100%;
-          border-radius: 15px;
-          box-shadow: 0 15px 50px rgba(149, 225, 211, 0.3);
-          border: 3px solid rgba(149, 225, 211, 0.3);
-          transition: all 0.3s;
-
-          &:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 60px rgba(149, 225, 211, 0.5);
-          }
-        }
-
-        p {
-          margin-top: 1rem;
-          font-size: 1rem;
-          color: rgba(255, 255, 255, 0.7);
-          font-style: italic;
-        }
-      }
-    `;
-
     return (
       <DebateContainer
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
+        style={{
+          width: "100%",
+          minHeight: "100vh",
+          background:
+            "linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%)",
+          padding: "4rem 2rem 8rem 2rem",
+          position: "relative",
+          overflowX: "hidden",
+          overflowY: "auto",
+          zIndex: 1,
+          pointerEvents: "auto",
+        }}
       >
         {/* Header */}
         <DebateHeader
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
+          style={{
+            textAlign: "center",
+            marginBottom: "4rem",
+            position: "relative",
+            zIndex: 2,
+          }}
         >
-          <h1>
+          <h1
+            style={{
+              fontSize: "4rem",
+              fontWeight: 900,
+              background: "linear-gradient(135deg, #95e1d3, #7dd3c0)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              marginBottom: "1rem",
+            }}
+          >
             {island.icon} {island.title}
           </h1>
-          <p>{island.subtitle}</p>
-          <p className="date">{island.classes}</p>
+          <p
+            style={{
+              fontSize: "1.5rem",
+              color: "#95e1d3",
+              fontWeight: 300,
+              margin: "0.5rem 0",
+            }}
+          >
+            {island.subtitle}
+          </p>
+          <p
+            className="date"
+            style={{
+              fontSize: "1rem",
+              color: "rgba(255, 255, 255, 0.6)",
+              fontStyle: "italic",
+            }}
+          >
+            {island.classes}
+          </p>
         </DebateHeader>
 
-        <DebateContent>
+        <DebateContent
+          style={{
+            maxWidth: "1400px",
+            margin: "0 auto",
+            position: "relative",
+            zIndex: 2,
+          }}
+        >
           {/* Wrap-Up Section */}
           <DebatePanel
             $borderColor="rgba(149, 225, 211, 0.4)"
@@ -3843,12 +3896,71 @@ export default function IslandContent({ island, onARClick }) {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+              backdropFilter: "blur(10px)",
+              border: "2px solid rgba(149, 225, 211, 0.4)",
+              borderRadius: "20px",
+              padding: "3rem",
+              marginBottom: "3rem",
+              boxShadow:
+                "0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(149, 225, 211, 0.2)",
+            }}
           >
-            <h2>📚 {island.class6.wrapUp.title}</h2>
-            <p>{island.class6.wrapUp.description}</p>
-            <ul>
+            <h2
+              style={{
+                fontSize: "2.5rem",
+                color: "#95e1d3",
+                marginBottom: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                fontWeight: 800,
+              }}
+            >
+              📚 {island.class6.wrapUp.title}
+            </h2>
+            <p
+              style={{
+                fontSize: "1.1rem",
+                lineHeight: "1.8",
+                color: "rgba(255, 255, 255, 0.9)",
+                marginBottom: "1.5rem",
+              }}
+            >
+              {island.class6.wrapUp.description}
+            </p>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: "1.5rem 0",
+              }}
+            >
               {island.class6.wrapUp.ourJourney.map((item, idx) => (
-                <li key={idx}>{item}</li>
+                <li
+                  key={idx}
+                  style={{
+                    fontSize: "1.05rem",
+                    color: "rgba(255, 255, 255, 0.85)",
+                    marginBottom: "0.8rem",
+                    paddingLeft: "1.5rem",
+                    position: "relative",
+                  }}
+                >
+                  <span
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      color: "#95e1d3",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    →
+                  </span>
+                  {item}
+                </li>
               ))}
             </ul>
           </DebatePanel>
@@ -3861,8 +3973,31 @@ export default function IslandContent({ island, onARClick }) {
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+              backdropFilter: "blur(10px)",
+              border: "2px solid rgba(231, 76, 60, 0.4)",
+              borderRadius: "20px",
+              padding: "3rem",
+              marginBottom: "3rem",
+              boxShadow:
+                "0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(231, 76, 60, 0.2)",
+            }}
           >
-            <h2>💥 {island.class6.criticalReflection.title}</h2>
+            <h2
+              style={{
+                fontSize: "2.5rem",
+                color: "#e74c3c",
+                marginBottom: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                fontWeight: 800,
+              }}
+            >
+              💥 {island.class6.criticalReflection.title}
+            </h2>
             <h3
               style={{
                 textAlign: "center",
@@ -3887,7 +4022,16 @@ export default function IslandContent({ island, onARClick }) {
               {island.class6.criticalReflection.speaker} —{" "}
               {island.class6.criticalReflection.event}
             </p>
-            <p>{island.class6.criticalReflection.description}</p>
+            <p
+              style={{
+                fontSize: "1.1rem",
+                lineHeight: "1.8",
+                color: "rgba(255, 255, 255, 0.9)",
+                marginBottom: "1.5rem",
+              }}
+            >
+              {island.class6.criticalReflection.description}
+            </p>
             <p
               style={{
                 marginTop: "1.5rem",
@@ -3905,7 +4049,15 @@ export default function IslandContent({ island, onARClick }) {
           </DebatePanel>
 
           {/* Versus: Arguments Against vs. For DT */}
-          <VersusContainer>
+          <VersusContainer
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 80px 1fr",
+              gap: "2rem",
+              margin: "3rem 0",
+              alignItems: "start",
+            }}
+          >
             {/* Arguments Against */}
             <ArgumentSide
               $bgColor="rgba(231, 76, 60"
@@ -3915,8 +4067,26 @@ export default function IslandContent({ island, onARClick }) {
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(231, 76, 60, 0.2) 0%, rgba(231, 76, 60, 0.1) 100%)",
+                border: "3px solid rgba(231, 76, 60, 0.5)",
+                borderRadius: "20px",
+                padding: "2.5rem",
+                boxShadow: "0 15px 50px rgba(231, 76, 60, 0.2)",
+              }}
             >
-              <h3>⚠️ What DT Should NOT Be</h3>
+              <h3
+                style={{
+                  fontSize: "2rem",
+                  color: "#e74c3c",
+                  marginBottom: "1.5rem",
+                  fontWeight: 800,
+                  textAlign: "center",
+                }}
+              >
+                ⚠️ What DT Should NOT Be
+              </h3>
               <div className="speaker-info">
                 Natasha's critique of mainstream DT trivialization
               </div>
@@ -3928,9 +4098,34 @@ export default function IslandContent({ island, onARClick }) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.2 + idx * 0.1 }}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.05)",
+                      borderLeft: "4px solid #e74c3c",
+                      borderRadius: "10px",
+                      padding: "1.5rem",
+                      marginBottom: "1.5rem",
+                    }}
                   >
-                    <h4>{arg.point}</h4>
-                    <p>{arg.explanation}</p>
+                    <h4
+                      style={{
+                        fontSize: "1.3rem",
+                        color: "#e74c3c",
+                        marginBottom: "0.8rem",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {arg.point}
+                    </h4>
+                    <p
+                      style={{
+                        fontSize: "1rem",
+                        color: "rgba(255, 255, 255, 0.85)",
+                        lineHeight: "1.6",
+                        margin: 0,
+                      }}
+                    >
+                      {arg.explanation}
+                    </p>
                   </ArgumentCard>
                 )
               )}
@@ -3940,6 +4135,15 @@ export default function IslandContent({ island, onARClick }) {
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ duration: 1, delay: 1.5, type: "spring" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "3rem",
+                fontWeight: 900,
+                color: "rgba(255, 255, 255, 0.3)",
+                alignSelf: "center",
+              }}
             >
               VS
             </VersusSymbol>
@@ -3953,8 +4157,26 @@ export default function IslandContent({ island, onARClick }) {
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(76, 175, 80, 0.2) 0%, rgba(76, 175, 80, 0.1) 100%)",
+                border: "3px solid rgba(76, 175, 80, 0.5)",
+                borderRadius: "20px",
+                padding: "2.5rem",
+                boxShadow: "0 15px 50px rgba(76, 175, 80, 0.2)",
+              }}
             >
-              <h3>✅ What DT SHOULD Be</h3>
+              <h3
+                style={{
+                  fontSize: "2rem",
+                  color: "#4caf50",
+                  marginBottom: "1.5rem",
+                  fontWeight: 800,
+                  textAlign: "center",
+                }}
+              >
+                ✅ What DT SHOULD Be
+              </h3>
               <div className="speaker-info">
                 When done right, DT can be powerful and transformative
               </div>
@@ -3966,8 +4188,24 @@ export default function IslandContent({ island, onARClick }) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.2 + idx * 0.1 }}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.05)",
+                      borderLeft: "4px solid #4caf50",
+                      borderRadius: "10px",
+                      padding: "1.5rem",
+                      marginBottom: "1.5rem",
+                    }}
                   >
-                    <p>{arg}</p>
+                    <p
+                      style={{
+                        fontSize: "1rem",
+                        color: "rgba(255, 255, 255, 0.85)",
+                        lineHeight: "1.6",
+                        margin: 0,
+                      }}
+                    >
+                      {arg}
+                    </p>
                   </ArgumentCard>
                 )
               )}
@@ -3982,9 +4220,39 @@ export default function IslandContent({ island, onARClick }) {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.8 }}
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+              backdropFilter: "blur(10px)",
+              border: "2px solid rgba(76, 175, 80, 0.4)",
+              borderRadius: "20px",
+              padding: "3rem",
+              marginBottom: "3rem",
+              boxShadow:
+                "0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(76, 175, 80, 0.2)",
+            }}
           >
-            <h2>🏆 Proven Success Cases</h2>
-            <SuccessCasesList>
+            <h2
+              style={{
+                fontSize: "2.5rem",
+                color: "#4caf50",
+                marginBottom: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                fontWeight: 800,
+              }}
+            >
+              🏆 Proven Success Cases
+            </h2>
+            <SuccessCasesList
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                gap: "1rem",
+                margin: "2rem 0",
+              }}
+            >
               {island.class6.criticalReflection.successCases.map(
                 (caseItem, idx) => (
                   <motion.div
@@ -3993,6 +4261,15 @@ export default function IslandContent({ island, onARClick }) {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 2 + idx * 0.1 }}
+                    style={{
+                      background: "rgba(76, 175, 80, 0.1)",
+                      border: "2px solid rgba(76, 175, 80, 0.3)",
+                      borderRadius: "10px",
+                      padding: "1rem",
+                      fontSize: "0.95rem",
+                      color: "rgba(255, 255, 255, 0.85)",
+                      textAlign: "center",
+                    }}
                   >
                     {caseItem}
                   </motion.div>
@@ -4006,33 +4283,147 @@ export default function IslandContent({ island, onARClick }) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 2.2 }}
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05))",
+              border: "3px solid rgba(255, 215, 0, 0.4)",
+              borderRadius: "20px",
+              padding: "3rem",
+              margin: "3rem 0",
+              boxShadow: "0 15px 50px rgba(255, 215, 0, 0.2)",
+            }}
           >
-            <h3>👨‍🍳 {island.class6.chefsJourneyFinal.title}</h3>
-            <p className="description">
+            <h3
+              style={{
+                fontSize: "2.5rem",
+                color: "#ffd700",
+                marginBottom: "1.5rem",
+                textAlign: "center",
+                fontWeight: 800,
+              }}
+            >
+              👨‍🍳 {island.class6.chefsJourneyFinal.title}
+            </h3>
+            <p
+              className="description"
+              style={{
+                fontSize: "1.1rem",
+                color: "rgba(255, 255, 255, 0.85)",
+                textAlign: "center",
+                marginBottom: "2rem",
+                lineHeight: "1.7",
+              }}
+            >
               {island.class6.chefsJourneyFinal.description}
             </p>
 
-            <div className="changes">
+            <div
+              className="changes"
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "1rem",
+                justifyContent: "center",
+                marginBottom: "2rem",
+              }}
+            >
               {island.class6.chefsJourneyFinal.changes.map((change, idx) => (
-                <span key={idx}>{change}</span>
+                <span
+                  key={idx}
+                  style={{
+                    background: "rgba(255, 255, 255, 0.1)",
+                    padding: "0.5rem 1rem",
+                    borderRadius: "20px",
+                    fontSize: "1rem",
+                    color: "rgba(255, 255, 255, 0.9)",
+                  }}
+                >
+                  {change}
+                </span>
               ))}
             </div>
 
-            <FlowSteps>
+            <FlowSteps
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1.5rem",
+                margin: "2rem 0",
+              }}
+            >
               {island.class6.chefsJourneyFinal.finalFlow.map((step, idx) => (
                 <FlowStep
                   key={idx}
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 2.5 + idx * 0.2 }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "1.5rem",
+                    background:
+                      "linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03))",
+                    border: "2px solid rgba(255, 215, 0, 0.3)",
+                    borderRadius: "15px",
+                    padding: "1.5rem",
+                  }}
                 >
-                  <div className="step-number">{idx + 1}</div>
-                  <div className="step-content">
-                    <h4>{step.island}</h4>
-                    <p className="step-subtitle">{step.subtitle}</p>
-                    <div className="step-activities">
+                  <div
+                    className="step-number"
+                    style={{
+                      fontSize: "2rem",
+                      fontWeight: 900,
+                      color: "#ffd700",
+                      minWidth: "50px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {idx + 1}
+                  </div>
+                  <div className="step-content" style={{ flex: 1 }}>
+                    <h4
+                      style={{
+                        fontSize: "1.5rem",
+                        color: "#ffd700",
+                        marginBottom: "0.5rem",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {step.island}
+                    </h4>
+                    <p
+                      className="step-subtitle"
+                      style={{
+                        fontSize: "1rem",
+                        color: "rgba(255, 255, 255, 0.7)",
+                        marginBottom: "0.8rem",
+                        fontStyle: "italic",
+                      }}
+                    >
+                      {step.subtitle}
+                    </p>
+                    <div
+                      className="step-activities"
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "0.5rem",
+                      }}
+                    >
                       {step.activities.map((activity, aIdx) => (
-                        <span key={aIdx}>{activity}</span>
+                        <span
+                          key={aIdx}
+                          style={{
+                            background: "rgba(255, 215, 0, 0.2)",
+                            border: "1px solid rgba(255, 215, 0, 0.4)",
+                            padding: "0.3rem 0.8rem",
+                            borderRadius: "15px",
+                            fontSize: "0.9rem",
+                            color: "rgba(255, 255, 255, 0.9)",
+                          }}
+                        >
+                          {activity}
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -4063,9 +4454,39 @@ export default function IslandContent({ island, onARClick }) {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 3 }}
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                backdropFilter: "blur(10px)",
+                border: "2px solid rgba(149, 225, 211, 0.4)",
+                borderRadius: "20px",
+                padding: "3rem",
+                marginBottom: "3rem",
+                boxShadow:
+                  "0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(149, 225, 211, 0.2)",
+              }}
             >
-              <h2>📸 Our Journey Documented</h2>
-              <PhotoSection>
+              <h2
+                style={{
+                  fontSize: "2.5rem",
+                  color: "#95e1d3",
+                  marginBottom: "1.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1rem",
+                  fontWeight: 800,
+                }}
+              >
+                📸 Our Journey Documented
+              </h2>
+              <PhotoSection
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+                  gap: "2rem",
+                  margin: "3rem 0",
+                }}
+              >
                 {island.images[0] && (
                   <motion.div
                     className="photo-wrapper"
@@ -4076,8 +4497,25 @@ export default function IslandContent({ island, onARClick }) {
                     <img
                       src={island.images[0]}
                       alt="Chef's Journey Final Model"
+                      style={{
+                        width: "100%",
+                        borderRadius: "15px",
+                        boxShadow: "0 15px 50px rgba(149, 225, 211, 0.3)",
+                        border: "3px solid rgba(149, 225, 211, 0.3)",
+                        transition: "all 0.3s",
+                      }}
                     />
-                    <p>Our final Chef's Journey model (revised)</p>
+                    <p
+                      style={{
+                        marginTop: "1rem",
+                        fontSize: "1rem",
+                        color: "rgba(255, 255, 255, 0.7)",
+                        fontStyle: "italic",
+                        textAlign: "center",
+                      }}
+                    >
+                      Our final Chef's Journey model (revised)
+                    </p>
                   </motion.div>
                 )}
                 {island.images[1] && (
@@ -4087,8 +4525,28 @@ export default function IslandContent({ island, onARClick }) {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 3.4 }}
                   >
-                    <img src={island.images[1]} alt="Team Photo" />
-                    <p>Pasta Lovers in front of our Chef's Journey poster</p>
+                    <img
+                      src={island.images[1]}
+                      alt="Team Photo"
+                      style={{
+                        width: "100%",
+                        borderRadius: "15px",
+                        boxShadow: "0 15px 50px rgba(149, 225, 211, 0.3)",
+                        border: "3px solid rgba(149, 225, 211, 0.3)",
+                        transition: "all 0.3s",
+                      }}
+                    />
+                    <p
+                      style={{
+                        marginTop: "1rem",
+                        fontSize: "1rem",
+                        color: "rgba(255, 255, 255, 0.7)",
+                        fontStyle: "italic",
+                        textAlign: "center",
+                      }}
+                    >
+                      Pasta Lovers in front of our Chef's Journey poster
+                    </p>
                   </motion.div>
                 )}
               </PhotoSection>
@@ -4103,18 +4561,73 @@ export default function IslandContent({ island, onARClick }) {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 3.2 }}
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+              backdropFilter: "blur(10px)",
+              border: "2px solid rgba(138, 43, 226, 0.4)",
+              borderRadius: "20px",
+              padding: "3rem",
+              marginBottom: "3rem",
+              boxShadow:
+                "0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(138, 43, 226, 0.2)",
+            }}
           >
-            <h2>💭 Final Reflections</h2>
-            <ReflectionGrid>
+            <h2
+              style={{
+                fontSize: "2.5rem",
+                color: "#ba55d3",
+                marginBottom: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                fontWeight: 800,
+              }}
+            >
+              💭 Final Reflections
+            </h2>
+            <ReflectionGrid
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                gap: "2rem",
+                margin: "2rem 0",
+              }}
+            >
               {island.reflections.map((reflection, idx) => (
                 <ReflectionCard
                   key={idx}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 3.5 + idx * 0.2 }}
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(138, 43, 226, 0.05))",
+                    border: "2px solid rgba(138, 43, 226, 0.4)",
+                    borderRadius: "15px",
+                    padding: "2rem",
+                  }}
                 >
-                  <h4>{reflection.topic}</h4>
-                  <p>{reflection.text}</p>
+                  <h4
+                    style={{
+                      fontSize: "1.5rem",
+                      color: "#ba55d3",
+                      marginBottom: "1rem",
+                      fontWeight: 700,
+                    }}
+                  >
+                    {reflection.topic}
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: "1.05rem",
+                      color: "rgba(255, 255, 255, 0.85)",
+                      lineHeight: "1.7",
+                      margin: 0,
+                    }}
+                  >
+                    {reflection.text}
+                  </p>
                 </ReflectionCard>
               ))}
             </ReflectionGrid>
@@ -4128,11 +4641,61 @@ export default function IslandContent({ island, onARClick }) {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 3.8 }}
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+              backdropFilter: "blur(10px)",
+              border: "2px solid rgba(149, 225, 211, 0.4)",
+              borderRadius: "20px",
+              padding: "3rem",
+              marginBottom: "3rem",
+              boxShadow:
+                "0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(149, 225, 211, 0.2)",
+            }}
           >
-            <h2>🎓 Competences Developed</h2>
-            <ul>
+            <h2
+              style={{
+                fontSize: "2.5rem",
+                color: "#95e1d3",
+                marginBottom: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                fontWeight: 800,
+              }}
+            >
+              🎓 Competences Developed
+            </h2>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: "1.5rem 0",
+              }}
+            >
               {island.class6.learningOutcomes.outcomes.map((outcome, idx) => (
-                <li key={idx}>{outcome}</li>
+                <li
+                  key={idx}
+                  style={{
+                    fontSize: "1.05rem",
+                    color: "rgba(255, 255, 255, 0.85)",
+                    marginBottom: "0.8rem",
+                    paddingLeft: "1.5rem",
+                    position: "relative",
+                  }}
+                >
+                  <span
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      color: "#95e1d3",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    →
+                  </span>
+                  {outcome}
+                </li>
               ))}
             </ul>
           </DebatePanel>
@@ -4145,15 +4708,63 @@ export default function IslandContent({ island, onARClick }) {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 4 }}
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+              backdropFilter: "blur(10px)",
+              border: "2px solid rgba(255, 215, 0, 0.4)",
+              borderRadius: "20px",
+              padding: "3rem",
+              marginBottom: "3rem",
+              boxShadow:
+                "0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.2)",
+            }}
           >
-            <h2>📚 Key Learnings from This Journey</h2>
-            <LearningsList>
+            <h2
+              style={{
+                fontSize: "2.5rem",
+                color: "#ffd700",
+                marginBottom: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                fontWeight: 800,
+              }}
+            >
+              📚 Key Learnings from This Journey
+            </h2>
+            <LearningsList
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: "2rem 0",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+              }}
+            >
               {island.learnings.map((learning, idx) => (
                 <motion.li
                   key={idx}
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 4.2 + idx * 0.1 }}
+                  whileHover={{
+                    scale: 1.02,
+                    x: 10,
+                    transition: { duration: 0.2 },
+                  }}
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03))",
+                    padding: "1.2rem 1.5rem",
+                    borderRadius: "10px",
+                    borderLeft: "4px solid #95e1d3",
+                    fontSize: "1.1rem",
+                    color: "rgba(255, 255, 255, 0.9)",
+                    lineHeight: "1.6",
+                    cursor: "pointer",
+                  }}
                 >
                   {learning}
                 </motion.li>

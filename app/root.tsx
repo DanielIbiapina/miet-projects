@@ -46,9 +46,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   const location = useLocation();
   const isChefJourney = location.pathname.startsWith('/chef-journey');
+  const isKnowYourLimit = location.pathname.startsWith('/know-your-limit');
 
-  // Chef's Journey não usa o layout mobile
-  if (isChefJourney) {
+  // Chef's Journey e Know Your Limit não usam o layout mobile
+  if (isChefJourney || isKnowYourLimit) {
     return <Outlet />;
   }
 

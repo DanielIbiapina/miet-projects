@@ -157,6 +157,11 @@ export const simulatePassiveMeasurement = (userProfile = mockUser.profile, previ
   };
 };
 
+// Função para simular medição (alias para simulatePassiveMeasurement)
+export function simulateMeasurement(userProfile, previousReadings) {
+  return simulatePassiveMeasurement(userProfile, previousReadings);
+}
+
 // Função para calcular projeção baseada em histórico
 // Retorna quando estará sobrio e quando poderá dirigir
 export const calculateProjection = (readings) => {

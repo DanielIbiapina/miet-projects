@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { theme } from '../utils/theme';
 
 export const Container = styled.div`
   min-height: 100vh;
   background: #ffffff;
-  color: #1f2937;
+  color: #111827;
   position: relative;
   overflow-x: hidden;
 `;
@@ -21,7 +22,7 @@ export const SafeArea = styled.div`
 export const Header = styled.header`
   padding: 1rem 1.5rem;
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid ${theme.colors.border};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -135,7 +136,7 @@ export const StatusIcon = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  color: #ef4444;
+  color: ${theme.colors.purpleLight};
   animation: pulse 1.5s ease-in-out infinite;
   
   @keyframes pulse {
@@ -159,7 +160,7 @@ export const StatusIcon = styled.div`
 export const StatusMessage = styled.div`
   font-size: 1.25rem;
   font-weight: 600;
-  color: #059669;
+  color: ${theme.colors.success};
   margin-bottom: 0.5rem;
 `;
 
@@ -183,7 +184,7 @@ export const LoadingDots = styled.div`
   gap: 0.25rem;
   margin-top: 1rem;
   font-size: 1.5rem;
-  color: #ef4444;
+  color: ${theme.colors.purpleLight};
   
   span {
     animation: bounce 1.4s ease-in-out infinite;

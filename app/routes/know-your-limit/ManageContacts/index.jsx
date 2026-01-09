@@ -26,7 +26,7 @@ import {
 
 export function meta() {
   return [
-    { title: "Manage Contacts - Know Your Limit" },
+    { title: "Manage Contacts - Omni Feeling" },
     {
       name: "description",
       content: "Manage your trusted contacts",

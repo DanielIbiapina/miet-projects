@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { theme } from '../utils/theme';
 
 export const Container = styled.div`
   min-height: 100vh;
-  background: #f9fafb;
-  color: #1f2937;
+  background: #ffffff;
+  color: #111827;
   position: relative;
   overflow-x: hidden;
   padding-bottom: 80px;
@@ -14,7 +15,7 @@ export const SafeArea = styled.div`
   margin: 0 auto;
   min-height: 100vh;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  background: #f9fafb;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
 `;
@@ -22,7 +23,7 @@ export const SafeArea = styled.div`
 export const Header = styled.header`
   padding: 1rem 1.5rem;
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid ${theme.colors.border};
   position: sticky;
   top: 0;
   z-index: 10;
@@ -48,7 +49,7 @@ export const Content = styled.div`
 
 export const ProfileSection = styled.div`
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -65,7 +66,7 @@ export const ProfileAvatar = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background: ${theme.colors.primaryGradient};
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -73,7 +74,7 @@ export const ProfileAvatar = styled.div`
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  box-shadow: ${theme.shadows.glow};
 `;
 
 export const ProfileName = styled.h2`
@@ -91,7 +92,7 @@ export const ProfileEmail = styled.div`
 
 export const Section = styled.div`
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -100,12 +101,12 @@ export const Section = styled.div`
 export const SectionTitle = styled.h3`
   font-size: 0.875rem;
   font-weight: 600;
-  color: #6b7280;
+  color: ${theme.colors.textSecondary};
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 1rem 1.5rem 0.75rem;
   background: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid ${theme.colors.border};
 `;
 
 export const SectionContent = styled.div`
@@ -117,7 +118,7 @@ export const InfoRow = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid ${theme.colors.border};
   
   &:last-child {
     border-bottom: none;
@@ -126,7 +127,7 @@ export const InfoRow = styled.div`
 
 export const InfoLabel = styled.div`
   font-size: 0.9375rem;
-  color: #4b5563;
+  color: #6b7280;
   font-weight: 500;
 `;
 
@@ -138,7 +139,7 @@ export const InfoValue = styled.div`
 
 export const DeviceCard = styled.div`
   background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 12px;
   padding: 1.25rem;
 `;
@@ -162,15 +163,16 @@ export const DeviceStatus = styled.div`
   gap: 0.5rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #059669;
+  color: ${props => props.$connected ? theme.colors.success : theme.colors.textSecondary};
 `;
 
 export const StatusDot = styled.div`
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: ${props => props.$connected ? '#10b981' : '#ef4444'};
+  background: ${props => props.$connected ? theme.colors.success : theme.colors.textSecondary};
   animation: ${props => props.$connected ? 'pulse 2s ease-in-out infinite' : 'none'};
+  box-shadow: ${props => props.$connected ? `0 0 8px ${theme.colors.success}` : 'none'};
   
   @keyframes pulse {
     0%, 100% {
@@ -199,7 +201,7 @@ export const ContactItem = styled.div`
   align-items: flex-start;
   padding: 1rem;
   background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 12px;
 `;
 
@@ -212,7 +214,7 @@ export const ContactName = styled.div`
 
 export const ContactPhone = styled.div`
   font-size: 0.875rem;
-  color: #4b5563;
+  color: #6b7280;
   margin-bottom: 0.25rem;
 `;
 
@@ -224,18 +226,22 @@ export const ContactRelation = styled.div`
 
 export const ActionButton = styled.button`
   width: 100%;
-  background: #ef4444;
+  background: ${theme.colors.primaryGradient};
   border: none;
   border-radius: 16px;
   padding: 1.125rem 1.5rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+  box-shadow: ${theme.shadows.md};
   margin-top: 0.5rem;
   
   &:active {
     transform: scale(0.98);
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    box-shadow: ${theme.shadows.sm};
+  }
+  
+  &:hover {
+    box-shadow: ${theme.shadows.glow};
   }
 `;
 

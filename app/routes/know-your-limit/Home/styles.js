@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { theme } from '../utils/theme';
 
 export const Container = styled.div`
   min-height: 100vh;
-  background: #f9fafb;
-  color: #1f2937;
+  background: #ffffff;
+  color: ${theme.colors.textPrimary};
   position: relative;
   overflow-x: hidden;
   padding-bottom: 80px;
@@ -14,7 +15,7 @@ export const SafeArea = styled.div`
   margin: 0 auto;
   min-height: 100vh;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  background: #f9fafb;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
 `;
@@ -22,7 +23,7 @@ export const SafeArea = styled.div`
 export const Header = styled.header`
   padding: 1rem 1.5rem 1.5rem;
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid ${theme.colors.border};
   position: sticky;
   top: 0;
   z-index: 10;
@@ -64,17 +65,18 @@ export const StatusIndicator = styled.div`
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  background: ${props => props.$connected ? '#f0fdf4' : '#fef2f2'};
+  background: ${props => props.$connected ? 'rgba(16, 185, 129, 0.1)' : 'rgba(212, 127, 227, 0.1)'};
   border-radius: 8px;
-  border: 1px solid ${props => props.$connected ? '#86efac' : '#fca5a5'};
+  border: 1px solid ${props => props.$connected ? theme.colors.success : theme.colors.border};
 `;
 
 export const StatusDot = styled.div`
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: ${props => props.$connected ? '#10b981' : '#ef4444'};
+  background: ${props => props.$connected ? theme.colors.success : theme.colors.textSecondary};
   animation: ${props => props.$connected ? 'pulse 2s ease-in-out infinite' : 'none'};
+  box-shadow: ${props => props.$connected ? `0 0 8px ${theme.colors.success}` : 'none'};
   
   @keyframes pulse {
     0%, 100% {
@@ -89,7 +91,7 @@ export const StatusDot = styled.div`
 export const StatusText = styled.span`
   font-size: 0.8125rem;
   font-weight: 600;
-  color: ${props => props.$connected ? '#059669' : '#dc2626'};
+  color: ${props => props.$connected ? theme.colors.success : theme.colors.textSecondary};
   white-space: nowrap;
 `;
 
@@ -103,7 +105,7 @@ export const MainContent = styled.div`
 
 export const CurrentStatusCard = styled.div`
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 20px;
   padding: 2rem 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -154,7 +156,7 @@ export const StatusLabel = styled.div`
 
 export const ChartSection = styled.div`
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -193,48 +195,48 @@ export const ChartSVG = styled.svg`
 
 export const ChartLine = styled.polyline`
   fill: none;
-  stroke: ${props => props.stroke || '#ef4444'};
+  stroke: ${props => props.stroke || theme.colors.purpleLight};
   stroke-width: ${props => props.strokeWidth || '3'};
   stroke-linecap: round;
   stroke-linejoin: round;
 `;
 
 export const ChartProjectionLine = styled.line`
-  stroke: ${props => props.stroke || '#9ca3af'};
+  stroke: ${props => props.stroke || theme.colors.textTertiary};
   stroke-width: ${props => props.strokeWidth || '2'};
   stroke-dasharray: ${props => props.strokeDasharray || '5,5'};
   opacity: 0.6;
 `;
 
 export const ChartPoint = styled.circle`
-  fill: ${props => props.fill || '#ef4444'};
-  stroke: ${props => props.stroke || '#ffffff'};
+  fill: ${props => props.fill || theme.colors.purpleLight};
+  stroke: ${props => props.stroke || theme.colors.backgroundCard};
   stroke-width: ${props => props.strokeWidth || '2'};
 `;
 
 export const ChartProjectionPoint = styled.circle`
-  fill: ${props => props.fill || '#9ca3af'};
-  stroke: ${props => props.stroke || '#ffffff'};
+  fill: ${props => props.fill || theme.colors.textTertiary};
+  stroke: ${props => props.stroke || theme.colors.backgroundCard};
   stroke-width: ${props => props.strokeWidth || '2'};
   opacity: ${props => props.opacity || '0.7'};
 `;
 
 export const ChartAxis = styled.line`
-  stroke: #e5e7eb;
+  stroke: ${theme.colors.border};
   stroke-width: 1;
 `;
 
 export const ChartLabel = styled.text`
   font-size: 10px;
-  fill: #6b7280;
+  fill: ${theme.colors.textTertiary};
 `;
 
 export const ProjectionCard = styled.div`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: ${theme.colors.primaryGradient};
   border-radius: 16px;
   padding: 1.5rem;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: ${theme.shadows.md};
 `;
 
 export const ProjectionTitle = styled.h3`
@@ -280,7 +282,7 @@ export const StatsGrid = styled.div`
 
 export const StatCard = styled.div`
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 12px;
   padding: 1rem;
   text-align: center;
@@ -305,7 +307,7 @@ export const StatLabel = styled.div`
 
 export const RecentReadings = styled.div`
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -333,7 +335,7 @@ export const ReadingItem = styled.div`
   padding: 0.75rem;
   background: #f9fafb;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
 `;
 
 export const ReadingTime = styled.div`
@@ -382,24 +384,28 @@ export const EmptyText = styled.div`
 export const SimulateButton = styled.button`
   width: 100%;
   padding: 1rem 1.5rem;
-  background: ${props => props.$isSimulating ? '#f59e0b' : '#ef4444'};
+  background: ${props => props.$isSimulating ? theme.colors.warning : theme.colors.primaryGradient};
   color: #ffffff;
   border: none;
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+  box-shadow: ${theme.shadows.md};
   transition: all 0.2s ease;
   
   &:active {
     transform: scale(0.98);
   }
+  
+  &:hover {
+    box-shadow: ${theme.shadows.glow};
+  }
 `;
 
 export const WarningBanner = styled.div`
-  background: ${props => props.$type === 'high' ? '#fef2f2' : '#fffbeb'};
-  border: 2px solid ${props => props.$type === 'high' ? '#ef4444' : '#f59e0b'};
+  background: ${props => props.$type === 'high' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(245, 158, 11, 0.1)'};
+  border: 2px solid ${props => props.$type === 'high' ? theme.colors.error : theme.colors.warning};
   border-radius: 12px;
   padding: 1rem 1.5rem;
   display: flex;
@@ -410,7 +416,7 @@ export const WarningBanner = styled.div`
 export const WarningText = styled.div`
   font-size: 0.9375rem;
   font-weight: 600;
-  color: ${props => props.$type === 'high' ? '#991b1b' : '#92400e'};
+  color: ${props => props.$type === 'high' ? theme.colors.error : theme.colors.warning};
   line-height: 1.5;
 `;
 
@@ -422,9 +428,9 @@ export const WarningActions = styled.div`
 export const WarningButton = styled.button`
   flex: 1;
   padding: 0.75rem 1rem;
-  background: ${props => props.$primary ? '#ef4444' : '#ffffff'};
-  color: ${props => props.$primary ? '#ffffff' : '#ef4444'};
-  border: 2px solid #ef4444;
+  background: ${props => props.$primary ? theme.colors.primaryGradient : '#ffffff'};
+  color: ${props => props.$primary ? '#ffffff' : theme.colors.textSecondary};
+  border: 2px solid ${theme.colors.purpleLight};
   border-radius: 8px;
   font-size: 0.9375rem;
   font-weight: 700;
@@ -433,5 +439,36 @@ export const WarningButton = styled.button`
   
   &:active {
     transform: scale(0.98);
+  }
+`;
+
+export const Toast = styled.div`
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: ${theme.colors.primaryGradient};
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: ${theme.shadows.glow};
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  max-width: 90%;
+  animation: slideDown 0.3s ease-out;
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   }
 `;

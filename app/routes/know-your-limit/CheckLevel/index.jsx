@@ -24,7 +24,7 @@ import {
 
 export function meta() {
   return [
-    { title: "Measuring - Know Your Limit" },
+    { title: "Measuring - Omni Feeling" },
     {
       name: "description",
       content: "Measuring your current alcohol level",

@@ -34,7 +34,7 @@ import {
 
 export function meta() {
   return [
-    { title: "Notify Contact - Know Your Limit" },
+    { title: "Notify Contact - Omni Feeling" },
     {
       name: "description",
       content: "Notify your trusted contact",
@@ -181,8 +181,8 @@ export default function TrustedContactScreen() {
             <MessagePreview>
               <PreviewTitle>Message Sent</PreviewTitle>
               <PreviewText>
-                "Hi {primaryContact.name.split(' ')[0]}, this is an automated safety alert from Know Your Limit. 
-                My current BAC level is {bac.toFixed(3)} ({level}). 
+                "Hi {primaryContact.name.split(' ')[0]}, this is an automated safety alert from Omni Feeling. 
+                My current BAC level is {bac.toFixed(3)}% ({level}). 
                 I may need assistance. My current location is {mockLocation.address}. 
                 Time: {formatTime()}. Please check on me when possible."
               </PreviewText>

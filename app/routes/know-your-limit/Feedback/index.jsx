@@ -25,7 +25,7 @@ import {
 
 export function meta() {
   return [
-    { title: "Your Level - Know Your Limit" },
+    { title: "Your Level - Omni Feeling" },
     {
       name: "description",
       content: "Your current alcohol level reading",
@@ -133,7 +133,7 @@ export default function FeedbackScreen() {
             <LevelBadge $color={config.color}>
               {config.text}
             </LevelBadge>
-            <BACValue>{(bac || 0).toFixed(3)}</BACValue>
+            <BACValue>{(bac || 0).toFixed(3)}%</BACValue>
             <BACLabel>BAC Level</BACLabel>
             <BACLabel style={{ marginTop: "0.5rem", fontSize: "0.875rem", opacity: 0.7 }}>
               Measured at {formatTime(timestamp)}

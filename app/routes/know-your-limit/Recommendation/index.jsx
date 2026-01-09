@@ -32,7 +32,7 @@ import {
 
 export function meta() {
   return [
-    { title: "Recommendations - Know Your Limit" },
+    { title: "Recommendations - Omni Feeling" },
     {
       name: "description",
       content: "Safety recommendations based on your level",

@@ -27,7 +27,7 @@ import {
 
 export function meta() {
   return [
-    { title: "Onboarding - Know Your Limit" },
+    { title: "Onboarding - Omni Feeling" },
     {
       name: "description",
       content: "Create your account and set up your profile",

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router';
+import { theme } from '../../utils/theme';
 
 export const NavContainer = styled.nav`
   position: fixed;
@@ -13,7 +14,7 @@ export const NavContainer = styled.nav`
   justify-content: space-around;
   padding: 0.5rem 0 max(0.75rem, env(safe-area-inset-bottom));
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid ${theme.colors.border};
   z-index: 1000;
   
   @media (max-width: 428px) {
@@ -27,14 +28,14 @@ export const NavItem = styled(Link)`
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: ${props => props.$active ? '#ef4444' : '#6b7280'};
+  color: ${props => props.$active ? theme.colors.purpleLight : theme.colors.textTertiary};
   transition: all 0.2s ease;
   flex: 1;
   padding: 0.5rem;
   border-radius: 8px;
   
   &:active {
-    background: #f3f4f6;
+    background: ${theme.colors.backgroundLight};
   }
 `;
 
@@ -43,7 +44,7 @@ export const NavIcon = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 0.25rem;
-  color: ${props => props.$active ? '#ef4444' : '#6b7280'};
+  color: ${props => props.$active ? theme.colors.purpleLight : theme.colors.textTertiary};
   transition: color 0.2s ease;
   
   svg {
@@ -54,7 +55,7 @@ export const NavIcon = styled.div`
 export const NavLabel = styled.span`
   font-size: 0.75rem;
   font-weight: ${props => props.$active ? '600' : '500'};
-  color: ${props => props.$active ? '#ef4444' : '#6b7280'};
+  color: ${props => props.$active ? theme.colors.purpleLight : theme.colors.textTertiary};
   transition: all 0.2s ease;
 `;
 

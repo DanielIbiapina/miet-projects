@@ -29,7 +29,7 @@ import {
 
 export function meta() {
   return [
-    { title: "History - Know Your Limit" },
+    { title: "History - Omni Feeling" },
     {
       name: "description",
       content: "View your measurement history",
@@ -63,28 +63,28 @@ export default function HistoryScreen() {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     });
   };
 
   const formatTime = (timestamp) => {
-    return new Date(timestamp).toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
+    return new Date(timestamp).toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
     });
   };
 
   const formatShortTime = (timestamp) => {
     const date = new Date(timestamp);
-    return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+    return `${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
   };
 
   const getMaxBAC = (readings) => {
-    return Math.max(...readings.map(r => r.bac || 0), 0.1);
+    return Math.max(...readings.map((r) => r.bac || 0), 0.1);
   };
 
   const getAverageBAC = (readings) => {
@@ -95,7 +95,7 @@ export default function HistoryScreen() {
 
   const getPeakBAC = (readings) => {
     if (readings.length === 0) return 0;
-    return Math.max(...readings.map(r => r.bac)).toFixed(3);
+    return Math.max(...readings.map((r) => r.bac)).toFixed(3);
   };
 
   return (
@@ -109,23 +109,36 @@ export default function HistoryScreen() {
           {nights.length === 0 ? (
             <EmptyState>
               <EmptyIcon>
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                  <line x1="16" y1="13" x2="8" y2="13"/>
-                  <line x1="16" y1="17" x2="8" y2="17"/>
-                  <polyline points="10 9 9 9 8 9"/>
+                <svg
+                  width="64"
+                  height="64"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
                 </svg>
               </EmptyIcon>
               <EmptyText>No history yet</EmptyText>
-              <EmptyText style={{ fontSize: "0.875rem", opacity: 0.7, marginTop: "0.5rem" }}>
+              <EmptyText
+                style={{
+                  fontSize: "0.875rem",
+                  opacity: 0.7,
+                  marginTop: "0.5rem",
+                }}
+              >
                 Completed nights will appear here
               </EmptyText>
             </EmptyState>
           ) : (
             nights.map((night) => {
-              const sortedReadings = [...night.readings].sort((a, b) => 
-                new Date(a.timestamp) - new Date(b.timestamp)
+              const sortedReadings = [...night.readings].sort(
+                (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
               );
               const maxBAC = getMaxBAC(sortedReadings);
               const chartHeight = 150;
@@ -143,21 +156,31 @@ export default function HistoryScreen() {
                       </NightStat>
                       <NightStat>
                         <NightStatLabel>Peak BAC</NightStatLabel>
-                        <NightStatValue>{getPeakBAC(sortedReadings)}</NightStatValue>
+                        <NightStatValue>
+                          {getPeakBAC(sortedReadings)}
+                        </NightStatValue>
                       </NightStat>
                       <NightStat>
                         <NightStatLabel>Avg BAC</NightStatLabel>
-                        <NightStatValue>{getAverageBAC(sortedReadings)}</NightStatValue>
+                        <NightStatValue>
+                          {getAverageBAC(sortedReadings)}
+                        </NightStatValue>
                       </NightStat>
                     </NightStats>
                   </NightHeader>
 
                   <ChartSection>
                     <LineChart>
-                      <ChartSVG viewBox={`0 0 ${chartWidth} ${chartHeight + padding * 2}`} preserveAspectRatio="xMidYMid meet">
+                      <ChartSVG
+                        viewBox={`0 0 ${chartWidth} ${chartHeight + padding * 2}`}
+                        preserveAspectRatio="xMidYMid meet"
+                      >
                         {/* Grid lines */}
                         {[0, 0.25, 0.5, 0.75, 1.0].map((val) => {
-                          const y = chartHeight + padding - (val * chartHeight / maxBAC);
+                          const y =
+                            chartHeight +
+                            padding -
+                            (val * chartHeight) / maxBAC;
                           return (
                             <line
                               key={val}
@@ -175,12 +198,22 @@ export default function HistoryScreen() {
                         {/* Data line */}
                         {sortedReadings.length > 1 && (
                           <ChartLine
-                            points={sortedReadings.map((reading, index) => {
-                              const x = padding + (index * (chartWidth - padding * 2) / (sortedReadings.length - 1));
-                              const y = chartHeight + padding - (reading.bac * chartHeight / maxBAC);
-                              return `${x},${y}`;
-                            }).join(' ')}
-                            stroke={getLevelColor(sortedReadings[sortedReadings.length - 1].level)}
+                            points={sortedReadings
+                              .map((reading, index) => {
+                                const x =
+                                  padding +
+                                  (index * (chartWidth - padding * 2)) /
+                                    (sortedReadings.length - 1);
+                                const y =
+                                  chartHeight +
+                                  padding -
+                                  (reading.bac * chartHeight) / maxBAC;
+                                return `${x},${y}`;
+                              })
+                              .join(" ")}
+                            stroke={getLevelColor(
+                              sortedReadings[sortedReadings.length - 1].level
+                            )}
                             fill="none"
                             strokeWidth="3"
                           />
@@ -188,8 +221,14 @@ export default function HistoryScreen() {
 
                         {/* Data points */}
                         {sortedReadings.map((reading, index) => {
-                          const x = padding + (index * (chartWidth - padding * 2) / Math.max(sortedReadings.length - 1, 1));
-                          const y = chartHeight + padding - (reading.bac * chartHeight / maxBAC);
+                          const x =
+                            padding +
+                            (index * (chartWidth - padding * 2)) /
+                              Math.max(sortedReadings.length - 1, 1);
+                          const y =
+                            chartHeight +
+                            padding -
+                            (reading.bac * chartHeight) / maxBAC;
                           return (
                             <ChartPoint
                               key={reading.id || index}
@@ -205,7 +244,10 @@ export default function HistoryScreen() {
 
                         {/* Time labels */}
                         {sortedReadings.map((reading, index) => {
-                          const x = padding + (index * (chartWidth - padding * 2) / Math.max(sortedReadings.length - 1, 1));
+                          const x =
+                            padding +
+                            (index * (chartWidth - padding * 2)) /
+                              Math.max(sortedReadings.length - 1, 1);
                           return (
                             <text
                               key={`label-${index}`}

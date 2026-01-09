@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { theme } from '../utils/theme';
 
 export const Container = styled.div`
   min-height: 100vh;
-  background: #f9fafb;
-  color: #1f2937;
+  background: #ffffff;
+  color: #111827;
   position: relative;
   overflow-x: hidden;
 `;
@@ -13,7 +14,7 @@ export const SafeArea = styled.div`
   margin: 0 auto;
   min-height: 100vh;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  background: #f9fafb;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
 `;
@@ -21,7 +22,7 @@ export const SafeArea = styled.div`
 export const Header = styled.header`
   padding: 1rem 1.5rem;
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid ${theme.colors.border};
   position: sticky;
   top: 0;
   z-index: 10;
@@ -47,7 +48,7 @@ export const Content = styled.div`
 
 export const InstructionCard = styled.div`
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -85,7 +86,7 @@ export const InstructionItem = styled.div`
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    background: #ef4444;
+    background: ${theme.colors.primaryGradient};
     color: #ffffff;
     font-weight: 700;
     font-size: 0.875rem;
@@ -108,7 +109,7 @@ export const QRCodeContainer = styled.div`
   gap: 1rem;
   padding: 2rem;
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 `;
@@ -117,7 +118,7 @@ export const QRCodePlaceholder = styled.div`
   width: 200px;
   height: 200px;
   background: #ffffff;
-  border: 2px solid #e5e7eb;
+  border: 2px solid ${theme.colors.border};
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -145,13 +146,17 @@ export const ScanButton = styled.button`
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: #ef4444;
+  background: ${theme.colors.primaryGradient};
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+  box-shadow: ${theme.shadows.md};
   
   &:active {
     transform: scale(0.98);
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    box-shadow: ${theme.shadows.sm};
+  }
+  
+  &:hover {
+    box-shadow: ${theme.shadows.glow};
   }
   
   &:disabled {

@@ -28,7 +28,7 @@ import {
 
 export function meta() {
   return [
-    { title: "Activate Sticker - Know Your Limit" },
+    { title: "Activate Sticker - Omni Feeling" },
     {
       name: "description",
       content: "Scan QR code to activate your Omni Feeling sticker",

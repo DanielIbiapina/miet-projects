@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router";
-import { mockUser, mockStickerDevice, mockTrustedContacts } from "../utils/mockData";
+import {
+  mockUser,
+  mockStickerDevice,
+  mockTrustedContacts,
+} from "../utils/mockData";
 import { BottomNav } from "../components/BottomNav";
 import {
   Container,
@@ -35,7 +39,7 @@ import {
 
 export function meta() {
   return [
-    { title: "Profile - Know Your Limit" },
+    { title: "Profile - Omni Feeling" },
     {
       name: "description",
       content: "Your profile and settings",
@@ -49,7 +53,7 @@ export default function ProfileScreen() {
   const getInitials = (name) => {
     return name
       .split(" ")
-      .map(n => n[0])
+      .map((n) => n[0])
       .join("")
       .toUpperCase()
       .slice(0, 2);
@@ -65,9 +69,7 @@ export default function ProfileScreen() {
         <Content>
           <ProfileSection>
             <ProfileHeader>
-              <ProfileAvatar>
-                {getInitials(mockUser.name)}
-              </ProfileAvatar>
+              <ProfileAvatar>{getInitials(mockUser.name)}</ProfileAvatar>
               <ProfileName>{mockUser.name}</ProfileName>
               <ProfileEmail>{mockUser.email}</ProfileEmail>
             </ProfileHeader>
@@ -85,7 +87,8 @@ export default function ProfileScreen() {
                   </DeviceStatus>
                 </DeviceHeader>
                 <DeviceActivation>
-                  Activated: {new Date(mockStickerDevice.activatedAt).toLocaleDateString()}
+                  Activated:{" "}
+                  {new Date(mockStickerDevice.activatedAt).toLocaleDateString()}
                 </DeviceActivation>
               </DeviceCard>
             </SectionContent>
@@ -97,31 +100,40 @@ export default function ProfileScreen() {
               <ContactsList>
                 {(() => {
                   const saved = localStorage.getItem("trustedContacts");
-                  const contacts = saved ? JSON.parse(saved) : mockTrustedContacts;
+                  const contacts = saved
+                    ? JSON.parse(saved)
+                    : mockTrustedContacts;
                   return contacts.map((contact) => (
                     <ContactItem key={contact.id}>
                       <div style={{ flex: 1 }}>
                         <ContactName>
                           {contact.name}
                           {contact.isPrimary && (
-                            <span style={{ 
-                              fontSize: "0.75rem", 
-                              fontWeight: 600, 
-                              color: "#ef4444",
-                              marginLeft: "0.5rem"
-                            }}>
+                            <span
+                              style={{
+                                fontSize: "0.75rem",
+                                fontWeight: 600,
+                                color: "#ef4444",
+                                marginLeft: "0.5rem",
+                              }}
+                            >
                               PRIMARY
                             </span>
                           )}
                         </ContactName>
                         <ContactPhone>{contact.phone}</ContactPhone>
-                        <ContactRelation>{contact.relationship}</ContactRelation>
+                        <ContactRelation>
+                          {contact.relationship}
+                        </ContactRelation>
                       </div>
                     </ContactItem>
                   ));
                 })()}
               </ContactsList>
-              <ActionButton onClick={() => navigate("/know-your-limit/manage-contacts")} style={{ marginTop: "1rem" }}>
+              <ActionButton
+                onClick={() => navigate("/know-your-limit/manage-contacts")}
+                style={{ marginTop: "1rem" }}
+              >
                 <ButtonText>Manage Contacts</ButtonText>
               </ActionButton>
             </SectionContent>
@@ -132,7 +144,9 @@ export default function ProfileScreen() {
             <SectionContent>
               <InfoRow>
                 <InfoLabel>Language</InfoLabel>
-                <InfoValue>{mockUser.preferences.language.toUpperCase()}</InfoValue>
+                <InfoValue>
+                  {mockUser.preferences.language.toUpperCase()}
+                </InfoValue>
               </InfoRow>
               <InfoRow>
                 <InfoLabel>Units</InfoLabel>
@@ -140,10 +154,6 @@ export default function ProfileScreen() {
               </InfoRow>
             </SectionContent>
           </Section>
-
-          <ActionButton onClick={() => navigate("/know-your-limit")}>
-            <ButtonText>Back to Home</ButtonText>
-          </ActionButton>
         </Content>
 
         <BottomNav />
@@ -151,4 +161,3 @@ export default function ProfileScreen() {
     </Container>
   );
 }
-

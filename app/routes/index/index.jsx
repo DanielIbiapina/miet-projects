@@ -42,12 +42,12 @@ export default function ProjectsIndex() {
     },
     {
       id: 3,
-      name: "Know Your Limit",
+      name: "Omni Feeling",
       description:
         "Serviço de conscientização sobre álcool baseado em wearable",
       icon: "🍷",
       path: "/know-your-limit",
-      color: "#ef4444",
+      color: "#D47FE3",
     },
   ];
 

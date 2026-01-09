@@ -25,7 +25,7 @@ import {
 
 export function meta() {
   return [
-    { title: "Safety Alert - Know Your Limit" },
+    { title: "Safety Alert - Omni Feeling" },
     {
       name: "description",
       content: "Emergency safety protocol activated",

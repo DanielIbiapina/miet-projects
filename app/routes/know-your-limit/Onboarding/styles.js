@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { theme } from '../utils/theme';
 
 export const Container = styled.div`
   min-height: 100vh;
-  background: #f9fafb;
-  color: #1f2937;
+  background: #ffffff;
+  color: #111827;
   position: relative;
   overflow-x: hidden;
 `;
@@ -13,7 +14,7 @@ export const SafeArea = styled.div`
   margin: 0 auto;
   min-height: 100vh;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  background: #f9fafb;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
 `;
@@ -21,7 +22,7 @@ export const SafeArea = styled.div`
 export const Header = styled.header`
   padding: 1rem 1.5rem;
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid ${theme.colors.border};
   position: sticky;
   top: 0;
   z-index: 10;
@@ -55,27 +56,28 @@ export const StepNumber = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: ${props => props.$active ? '#ef4444' : '#e5e7eb'};
-  color: ${props => props.$active ? '#ffffff' : '#6b7280'};
+  background: ${props => props.$active ? theme.colors.primaryGradient : theme.colors.backgroundLight};
+  color: ${props => props.$active ? '#ffffff' : theme.colors.textTertiary};
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 0.875rem;
+  border: ${props => props.$active ? 'none' : `1px solid ${theme.colors.border}`};
 `;
 
 export const StepLabel = styled.div`
   position: absolute;
   top: 40px;
   font-size: 0.75rem;
-  color: ${props => props.$active ? '#ef4444' : '#9ca3af'};
+  color: ${props => props.$active ? theme.colors.purpleLight : theme.colors.textTertiary};
   font-weight: 500;
   white-space: nowrap;
 `;
 
 export const FormSection = styled.div`
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid ${theme.colors.border};
   border-radius: 16px;
   padding: 2rem 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -112,7 +114,7 @@ export const Input = styled.input`
   width: 100%;
   padding: 0.875rem 1rem;
   font-size: 1rem;
-  border: 2px solid ${props => props.$error ? '#ef4444' : '#e5e7eb'};
+  border: 2px solid ${props => props.$error ? theme.colors.error : '#e5e7eb'};
   border-radius: 12px;
   background: #ffffff;
   color: #111827;
@@ -120,8 +122,8 @@ export const Input = styled.input`
   
   &:focus {
     outline: none;
-    border-color: ${props => props.$error ? '#ef4444' : '#ef4444'};
-    box-shadow: 0 0 0 3px ${props => props.$error ? '#fef2f2' : '#fef2f2'};
+    border-color: ${props => props.$error ? theme.colors.error : theme.colors.purpleLight};
+    box-shadow: 0 0 0 3px ${props => props.$error ? 'rgba(239, 68, 68, 0.1)' : 'rgba(212, 127, 227, 0.1)'};
   }
   
   &::placeholder {
@@ -133,16 +135,16 @@ export const Select = styled.select`
   width: 100%;
   padding: 0.875rem 1rem;
   font-size: 1rem;
-  border: 2px solid #e5e7eb;
+  border: 2px solid ${theme.colors.border};
   border-radius: 12px;
-  background: #ffffff;
-  color: #111827;
+  background: ${theme.colors.backgroundLight};
+  color: ${theme.colors.textPrimary};
   transition: all 0.2s ease;
   
   &:focus {
     outline: none;
-    border-color: #ef4444;
-    box-shadow: 0 0 0 3px #fef2f2;
+    border-color: ${theme.colors.purpleLight};
+    box-shadow: 0 0 0 3px rgba(212, 127, 227, 0.1);
   }
 `;
 
@@ -196,13 +198,17 @@ export const Button = styled.button`
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: ${props => props.$secondary ? '#ffffff' : '#ef4444'};
-  color: ${props => props.$secondary ? '#1f2937' : '#ffffff'};
-  border: ${props => props.$secondary ? '2px solid #e5e7eb' : 'none'};
-  box-shadow: ${props => props.$secondary ? 'none' : '0 4px 12px rgba(239, 68, 68, 0.25)'};
+  background: ${props => props.$secondary ? theme.colors.backgroundCard : theme.colors.primaryGradient};
+  color: ${props => props.$secondary ? theme.colors.textPrimary : '#ffffff'};
+  border: ${props => props.$secondary ? `2px solid ${theme.colors.border}` : 'none'};
+  box-shadow: ${props => props.$secondary ? 'none' : theme.shadows.md};
   
   &:active {
     transform: scale(0.98);
+  }
+  
+  &:hover {
+    box-shadow: ${props => props.$secondary ? 'none' : theme.shadows.glow};
   }
   
   &:disabled {
@@ -217,7 +223,7 @@ export const ButtonText = styled.span`
 
 export const ErrorMessage = styled.div`
   font-size: 0.875rem;
-  color: #ef4444;
+  color: ${theme.colors.error};
   margin-top: 0.5rem;
   font-weight: 500;
 `;

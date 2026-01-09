@@ -147,7 +147,7 @@ export const DeleteButton = styled.button`
 export const AddButton = styled.button`
   width: 100%;
   padding: 1rem 1.5rem;
-  background: #ef4444;
+  background: linear-gradient(135deg, #D47FE3 0%, #7B1CC7 100%);
   color: #ffffff;
   border: none;
   border-radius: 12px;
@@ -158,12 +158,16 @@ export const AddButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+  box-shadow: 0 4px 12px rgba(123, 28, 199, 0.3);
   transition: all 0.2s ease;
   
   &:active {
     transform: scale(0.98);
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    box-shadow: 0 2px 8px rgba(123, 28, 199, 0.4);
+  }
+  
+  &:hover {
+    box-shadow: 0 0 20px rgba(212, 127, 227, 0.5);
   }
 `;
 
